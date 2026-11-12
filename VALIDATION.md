@@ -39,10 +39,15 @@ and these x86-64/ARM examples. It does not prove decompiler correctness, complet
 firmware reconstruction or support for every architecture. Repeat qualification
 when the CLI, exporters, Ghidra or JDK change. [Reproduction commands](docs/corpus.md#security-gates)
 
-**Still NOT VERIFIED:** hosted GitHub workflows; initial publication alone does
-not establish a successful hosted run. Earlier
+**Hosted CI:** check the [main-branch workflow runs](https://github.com/WhyzperMe/nyra-fwlab/actions/workflows/ci.yml?query=branch%3Amain)
+for the tested commit and conclusion. The first hosted run passed Ubuntu verification,
+the independent corpus, dependency audits and fuzzing, but exposed a Windows test
+stub comparing resolved and unresolved temporary paths. A portable path-alias
+regression reproduced that failure locally; using actual file identity fixes it.
+The updated 16-test Python suite passed locally on Windows and Linux. Earlier
 sections retain their historical qualification status and are superseded here
-only for the local live-Ghidra gate.
+only for the local live-Ghidra gate; a hosted run is qualified only when it finishes
+successfully for the target commit.
 
 ## P2 architecture and export admission — 2026-11-12
 

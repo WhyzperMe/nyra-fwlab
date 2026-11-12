@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Fix the benchmark fail-fast regression test on Windows by identifying temporary executables with `samefile` after path resolution. Exercise a path alias on every platform so this failure is covered locally.
+
 - Qualify live Ghidra 12.2 with Linux JDK 25.0.5 on a known reference ELF and the SSC338Q ARM target. Strengthen the integration gate with actual decompilation, static-call and cache miss/hit assertions; document the tested scope and reproduction commands.
 
 - Split CLI syntax, dispatch, scanning, analysis and output handling into focused modules. Retain command aliases and report bytes; reject `--ghidra-target` without headless configuration during argument parsing.

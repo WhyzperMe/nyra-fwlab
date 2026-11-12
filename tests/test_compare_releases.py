@@ -42,12 +42,20 @@ class CompareReleaseTests(unittest.TestCase):
 
     def test_main_fails_at_the_first_comparison_without_emitting_a_success_report(self):
         with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
+            # Exercise a path alias on every host. Windows temp directories may
+            # resolve through junctions; the stub must identify files, not paths.
+            alias = Path(directory) / "alias"
+            alias.mkdir()
+            root = alias / ".."
             baseline, candidate, source = [root / name for name in ("baseline", "candidate", "input")]
             for file in (baseline, candidate, source):
                 file.write_bytes(b"fixture")
             def measure(binary, *_):
-                identity = self.identity if binary == baseline else ("different-source", self.identity[1])
+                if binary.samefile(baseline):
+                    identity = self.identity
+                else:
+                    self.assertTrue(binary.samefile(candidate))
+                    identity = ("different-source", self.identity[1])
                 return 0.1, 1.0, identity
             args = ["compare", "--baseline", str(baseline), "--candidate", str(candidate), "--iterations", "15"]
             output = io.StringIO()
