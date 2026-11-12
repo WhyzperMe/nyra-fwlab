@@ -1,67 +1,193 @@
+<div align="center">
+
 # NYRA FWLab
 
-NYRA FWLab 0.10.1 is an offline firmware recovery, static reverse-engineering and Claude-workspace tool. Build with Rust 1.95.0 and the checked-in lockfile. Windows and Linux are covered by the release checks. Optional external analysis runs in a Linux sandbox, including WSL2 hosts that permit unprivileged user namespaces.
+**From firmware bytes to evidence you can inspect, verify, and build on.**
 
-| Input | What the pipeline establishes |
+[![CI](https://github.com/WhyzperMe/nyra-fwlab/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/WhyzperMe/nyra-fwlab/actions/workflows/ci.yml)
+[![Rust](https://img.shields.io/badge/Rust-1.95.0-f97316?logo=rust&logoColor=white)](rust-toolchain.toml)
+[![MIT](https://img.shields.io/badge/License-MIT-22c55e)](LICENSE)
+
+Offline firmware recovery and static reverse engineering in Rust.<br>
+Bounded parsers Â· Source provenance Â· Sandboxed Ghidra Â· Verified Claude workspaces
+
+[Quick start](#quick-start) Â· [Supported formats](#supported-formats) Â· [Workspace](#your-workspace) Â· [Documentation](docs/README.md)
+
+</div>
+
+---
+
+NYRA FWLab helps you recover supported firmware packages, understand their contents,
+and create a traceable workspace for manual analysis or Claude Code. Original bytes,
+recovered members, inferred findings, and editable reconstruction stay separate.
+
+> [!IMPORTANT]
+> NYRA FWLab never executes recovered firmware or flashes a device. Checksums and
+> replay establish byte consistency; they do not prove vendor authenticity,
+> complete flash coverage, hardware behavior, or bootability.
+
+## Why use it?
+
+| Task | What NYRA gives you |
 | --- | --- |
-| HiChip PIHC | Header bounds, raw carves and individually CRC-verified ZIP members. ZIP directory consistency is reported separately. |
-| Classic ZIP | Consistent central and local records, including streamed data descriptors. Portable paths, exact stored or DEFLATE output and CRC per member. |
-| USTAR / GNU TAR subset | Checksummed headers and bounded regular file ranges. Raw members have source SHA-256 provenance and are stored separately from CRC-verified recovery. |
-| SquashFS 4.0 | Superblock and table bounds. Optional extraction inventories regular files and stores links as metadata. |
-| ELF | Bounded parsing of headers, dependencies, symbols and addressable strings. |
-| Single-member gzip | Bounded decompression with CRC and ISIZE validation. The payload enters static ELF or optional SquashFS analysis when recognized. |
-| Legacy U-Boot uImage | CRC-verified payload carve, sizes, load and entry addresses and numeric type metadata. |
-| Unknown or corrupt input | Strict by default. With `--allow-partial` the source is preserved, a bounded scan lists embedded structure candidates with their failed or passed checks, conflicts and derived next steps, and validated non-overlapping structures are carved with exact source ranges. See [candidate discovery](docs/candidates.md). |
+| Recover an update package | Bounded extraction, per-member checks where available, exact source ranges, and explicit exclusions. |
+| Investigate an unfamiliar image | Embedded-format candidates with validation checks, overlaps, evidence tiers, and concrete next steps. |
+| Understand the binaries | ELF metadata, dependencies, symbols, boot/configuration candidates, and hardware observations with provenance. |
+| Hand evidence to Claude Code | A verified artifact catalog, firmware map, hardware overview, open questions, and a prioritized task plan. |
+| Check someone else's result | Independent workspace hashing and source replay; optional comparison with an external golden manifest. |
 
-The pipeline never runs extracted firmware or writes to a device. Individual byte checks establish no vendor identity, hardware behavior, complete flash image or flashability.
+```mermaid
+flowchart LR
+    A["Firmware image"] --> B["Identify and recover"]
+    B --> C["Static analysis"]
+    C --> D["Verified workspace"]
+    C -. "Explicit opt-in" .-> E["Sandboxed Ghidra / SquashFS"]
+    E --> D
+```
+
+Unknown or damaged input is rejected by default. With `--allow-partial`, NYRA preserves
+it and records bounded findings and eligible raw carves. A signature match alone is
+never promoted to verified recovery.
+
+## Quick start
+
+**Requirements:** Rust **1.95.0** and Python 3.10+ for the checked release-build helper.
+The core CLI is tested on Windows and Linux. Optional external tools run on Linux,
+including WSL2 hosts that permit unprivileged user namespaces.
+
+```bash
+git clone https://github.com/WhyzperMe/nyra-fwlab.git
+cd nyra-fwlab
+python -B scripts/build-release.py
+```
+
+The helper builds the locked workspace, remaps local build paths, and checks the
+release executable. The examples use `./target/release/nyra-fw`; on Windows the
+executable is `nyra-fw.exe`.
+
+```bash
+# 1. Identify the image without extracting it.
+./target/release/nyra-fw scan firmware.pkg --json
+
+# 2. Create a fresh evidence workspace.
+./target/release/nyra-fw analyze firmware.pkg -o "$HOME/nyra-workspaces/sample"
+
+# 3. Re-derive artifacts and verify the agent handoff.
+./target/release/nyra-fw verify "$HOME/nyra-workspaces/sample" --replay --agent-ready
+```
+
+Choose an output parent you control and a fresh destination. Under WSL, use a native
+Linux output directory such as `$HOME/nyra-workspaces`; Windows mounts can reject the
+atomic directory publication required by NYRA.
+
+### Common workflows
+
+```bash
+# Diagnose unfamiliar input and preserve partial evidence.
+./target/release/nyra-fw scan unknown.bin --candidates --json
+./target/release/nyra-fw analyze unknown.bin -o "$HOME/nyra-workspaces/unknown" --allow-partial
+
+# Inspect verified reports or reuse a matching completed offline run.
+./target/release/nyra-fw inspect "$HOME/nyra-workspaces/sample" --json
+./target/release/nyra-fw analyze firmware.pkg -o "$HOME/nyra-workspaces/sample" --resume
+
+# Create and verify a separate evidence-only agent handoff.
+./target/release/nyra-fw export-agent "$HOME/nyra-workspaces/sample" -o "$HOME/nyra-workspaces/agent-export"
+./target/release/nyra-fw verify-agent-export "$HOME/nyra-workspaces/agent-export"
+```
+
+`--threads` bounds CPU workers: automatic selection uses up to eight; the explicit
+maximum is sixteen. `--run-timeout-seconds` bounds the invocation. Add
+`--timings --json` to analysis to keep deterministic JSON on stdout and phase timings
+on stderr. [CLI and recovery details](docs/formats.md)
+
+## Supported formats
+
+Support describes the checked subset, not a claim that every image with that
+extension can be reconstructed.
+
+| Input | Validation and recovery |
+| --- | --- |
+| **HiChip PIHC** | Header bounds, raw carves, and individually CRC-verified ZIP members; separate ZIP directory audit. |
+| **Classic ZIP** | Matching central/local records, streamed data descriptors, portable paths, stored/DEFLATE decoding, and member CRCs. |
+| **USTAR / GNU TAR subset** | Checksummed headers and bounded regular-file ranges; raw members retain SHA-256 provenance and an unverified classification. |
+| **SquashFS 4.0** | Superblock and metadata-table bounds; opt-in extraction inventories regular files and records links as metadata. |
+| **ELF** | Bounded header, dependency, symbol, and addressed-string inspection. |
+| **Single-member gzip** | Bounded decompression, CRC and ISIZE validation; eligible payloads enter static analysis. |
+| **Legacy U-Boot uImage** | Header/payload CRCs, bounded payload carving, load/entry addresses, and numeric type metadata. |
+| **Unknown / damaged images** | Conservative candidate discovery; optional partial preservation with explicit failed checks and unresolved overlaps. |
+
+[Exact format boundaries](docs/formats.md) Â· [Embedded candidate discovery](docs/candidates.md)
+
+## Your workspace
+
+```text
+workspace/
+â”œâ”€â”€ original/          Exact input bytes
+â”œâ”€â”€ recovered/         Recovered members and classified raw carves
+â”œâ”€â”€ analysis/          Static findings, component graph, and evidence index
+â”œâ”€â”€ manifests/         Source identities, hashes, and run metadata
+â””â”€â”€ reconstruction/    Editable notes and reconstruction work
+```
+
+Each workspace also includes generated firmware/hardware maps and agent guidance.
+Before loading that guidance into Claude Code or another agent, run
+`verify --agent-ready` with a trusted NYRA binary. Then follow the verified guidance
+and `analysis/workspace/agent-index.json`.
+
+Keep firmware strings, logs, scripts, and pseudocode in the evidence layer. Edit
+`reconstruction/`; changes to the immutable evidence tree are detected by verification.
+[Agent workflow](docs/agent-workflow.md) Â· [Workspace contracts](docs/workspace-schema.md)
+
+## Optional Ghidra and filesystem analysis
+
+On Linux/WSL, provision trusted **bubblewrap, util-linux, GNU tar, awk, and
+squashfs-tools**. Ghidra additionally needs a trusted installation and compatible
+Linux JDK. Tools run with explicit opt-in, bounded resources, and network isolation.
+
+```bash
+./target/release/nyra-fw analyze firmware.pkg \
+  -o "$HOME/nyra-workspaces/rootfs" --extract-filesystems
+
+NYRA_JAVA_HOME=/opt/jdk-25 ./target/release/nyra-fw analyze firmware.pkg \
+  -o "$HOME/nyra-workspaces/ghidra" \
+  --ghidra-headless /opt/ghidra/support/analyzeHeadless
+```
+
+Tool failures abort publication by default. `--allow-partial-tools` records an optional
+tool failure while retaining other verified results; `--allow-partial` separately
+controls firmware recovery. Validated Ghidra export caching is opt-in with
+`--ghidra-cache`; it requires an explicit `NYRA_JAVA_HOME` and a private cache directory.
+Use `--require-cgroup` to require delegated process-tree resource limits.
+
+Ghidra pseudocode is inferred, and static references can miss indirect calls.
+[Sandbox and trust model](docs/security.md) Â· [Live Ghidra qualification](docs/corpus.md#security-gates)
+
+## Evidence and validation
+
+| Check | Recorded result |
+| --- | --- |
+| **SSC338Q golden recovery** | All **493 filenames and SHA-256 values** match the independent reference; replay re-derives **495 artifacts**. |
+| **Determinism** | One- and eight-worker SSC338Q workspaces are byte-identical. |
+| **Native release builds** | Byte-identical repeated builds per tested Windows/Linux host, with local build-path checks. |
+| **Live Ghidra** | Ghidra **12.2** with Linux JDK **25.0.5** passed reference-ELF and SSC338Q ARM analysis, export/cache checks, and replay. |
+| **Hostile-input coverage** | Independent format fixtures, regression tests, bounded parser fuzzing, and sandbox failure gates. |
+
+These results cover the documented inputs and toolchains. Performance measurements
+are mixed; no general speedup or universal firmware support is claimed. The CI badge
+links to current hosted results. [Full validation record and limitations](VALIDATION.md)
+
+## Documentation
+
+- [Architecture and development checks](docs/architecture.md)
+- [Security model and safety contracts](docs/security.md)
+- [Supported formats and candidate discovery](docs/formats.md)
+- [Workspace schema and agent workflow](docs/workspace-schema.md)
+- [Independent corpus and performance measurements](docs/corpus.md)
+- [Security reporting](SECURITY.md) Â· [Changelog](CHANGELOG.md)
 
 ## License
 
-Copyright (c) 2026 Whyzper.Me ([GitHub](https://github.com/WhyzperMe)), licensed under the [MIT License](LICENSE). You may use, modify and redistribute the code, including commercially, if you keep the copyright notice and the license text. The licenses cover this repository only. They grant no rights to any firmware you analyze, and the format constants noted in [SECURITY.md](SECURITY.md) come from a vendor update package. Dependencies keep their own licenses.
-
-## Build and use
-
-```bash
-cargo build --workspace --release --locked
-cargo run --release --locked -p nyra-fw-cli -- scan firmware.pkg --json
-cargo run --release --locked -p nyra-fw-cli -- analyze firmware.pkg --profile auto --threads 8 --workspace workspaces/camera
-cargo run --release --locked -p nyra-fw-cli -- analyze firmware.pkg --workspace workspaces/profile --timings --json
-cargo run --release --locked -p nyra-fw-cli -- scan unknown.bin --json
-cargo run --release --locked -p nyra-fw-cli -- analyze unknown.bin --workspace workspaces/unknown --allow-partial
-cargo run --release --locked -p nyra-fw-cli -- analyze unknown.bin --workspace workspaces/selected --allow-partial --candidate 0
-cargo run --release --locked -p nyra-fw-cli -- inspect workspaces/camera
-cargo run --release --locked -p nyra-fw-cli -- verify workspaces/camera --replay --agent-ready --json
-cargo run --release --locked -p nyra-fw-cli -- export-agent workspaces/camera --output workspaces/camera-agent
-cargo run --release --locked -p nyra-fw-cli -- verify-agent-export workspaces/camera-agent
-cargo run --release --locked -p nyra-fw-cli -- analyze firmware.pkg --workspace workspaces/camera --resume
-```
-
-The workspace destination must be fresh, except when `--resume` verifies a completed offline run against the input bytes, source filename, release version and recovery options. Choose a destination parent that you control. On WSL2, use a native Linux output directory such as `~/workspaces`. WSL2 Windows mounts can reject the atomic directory rename required for publication. Use `--run-timeout-seconds` to set the CLI wall-clock deadline. [Security model](docs/security.md)
-
-For a distributable native executable, use `python -B scripts/build-release.py`. It remaps local source and dependency paths and checks the resulting CLI for user-directory references. Publish the checked `target/release/nyra-fw` executable (`nyra-fw.exe` on Windows). Keep compiler caches and PDB files private. [Release build details](docs/architecture.md#release-artifacts)
-
-### External tools on Linux
-
-Install bubblewrap, util-linux, GNU tar, awk and squashfs-tools using trusted system packages. Ghidra also requires a trusted installation and a compatible Linux JDK. Set `NYRA_JAVA_HOME` for a JDK installed outside the system paths.
-
-Ghidra 12.2 with Linux Temurin JDK 25.0.5 has passed local live qualification on a
-reference ELF and the SSC338Q ARM target, including exports, cache reuse and replay.
-[Tested scope](VALIDATION.md#live-ghidra-qualification--2026-11-12) · [Repeat the gate](docs/corpus.md#security-gates)
-
-```bash
-nyra-fw analyze firmware.pkg --workspace workspaces/camera-rootfs --extract-filesystems
-NYRA_JAVA_HOME=/opt/jdk-25 nyra-fw analyze firmware.pkg --workspace workspaces/camera-ghidra --ghidra-headless /opt/ghidra/support/analyzeHeadless
-nyra-fw verify workspaces/camera --golden /path/to/recovery_manifest.json
-```
-
-External tool failures abort publication by default. Use `--allow-partial-tools` to publish verified recovery with the tool failure recorded in `analysis/workspace/outcomes.json`. To reuse validated Ghidra exports, pass `--ghidra-cache` with an existing private directory separate from the workspace and set `NYRA_JAVA_HOME`. Add `--require-cgroup` to require a delegated Linux process-tree limit before launching a tool. See [the architecture notes](docs/architecture.md) for the cache contract.
-
-## Workspace
-
-Before opening a generated workspace in an agent, run `nyra-fw verify <workspace> --agent-ready` with a trusted local binary. Start with `AGENTS.md` (identical to `CLAUDE.md`), then use `analysis/workspace/agent-index.json` to find the relevant evidence. The source copy is under `original/`. Recovered files and raw carves are under `recovered/`. Use `reconstruction/` for editable work. [Agent workflow](docs/agent-workflow.md)
-
-The component graph links candidate IDs, address spaces and materialized artifacts. For standalone ZIP and USTAR, `scan --json` and the workspace expose the same structural finding, including declared ZIP CRCs. Source replay reconstructs both reports from the source. [Report contracts](docs/workspace-schema.md)
-
-See the [documentation index](docs/README.md), [architecture](docs/architecture.md), [candidate discovery](docs/candidates.md) and [validation results](VALIDATION.md).
-
-Run the independent candidate corpus to measure recognition coverage and compare releases on the same host. [Corpus and performance checks](docs/corpus.md)
+**MIT Â· [Whyzper.Me](https://github.com/WhyzperMe)** â€” see [LICENSE](LICENSE).
+The repository license grants no rights to external firmware. Dependencies retain
+their own licenses; the PIHC format constants are disclosed in [SECURITY.md](SECURITY.md).

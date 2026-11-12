@@ -4,7 +4,7 @@
 | --- | --- |
 | Crates, modules and execution | [architecture](architecture.md) |
 | Threat model, limits and the sandbox | [security](security.md) |
-| P0 contracts, responsible modules and regression checks | [P0 safety contracts](p0-contracts.md) |
+| Safety contracts, responsible modules and regression checks | [safety contracts](security.md#safety-contracts) |
 | Supported format subset | [formats](formats.md) |
 | Unknown and damaged input | [candidate discovery](candidates.md) |
 | Independent references and performance comparisons | [corpus](corpus.md) |

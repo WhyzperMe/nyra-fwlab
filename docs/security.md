@@ -51,3 +51,31 @@ of an unlisted function. Byte checksums alone do not prove semantic consistency.
 No CRC or workspace hash authenticates the vendor. Physical hardware claims require independent evidence.
 
 Use `verify --replay` to re-derive source artifacts and their provenance after the snapshot check. A workspace can be internally consistent even when a claimed transformation is wrong. The replay regression rehashes such a workspace and checks that the provenance verification rejects it.
+
+## Safety contracts
+
+These contracts govern admission and publication across the five crates. Changes
+require a regression test and an explicit compatibility decision.
+
+| Contract | Owner | Verification |
+| --- | --- | --- |
+| Every source range has a checked end and fits its containing bytes. | Format readers, `source_map`, `byte_map` and replay | Parser prefix tests and replay tests for false source ranges and transformations. |
+| Original and decoded gzip coordinates have explicit identities. | Candidate discovery and `component_graph` | `component_graph_keeps_decoded_gzip_coordinates_separate`. |
+| Workspace reads open each relative component without following links, then check the opened handle. | Workspace `files` and `rootfs` | Replacement-root and retained-handle tests. Extracted binaries use the same handle for prefix admission and bounded reading. |
+| Traversal enforces entry, path-depth and deadline limits before accumulating an unbounded directory listing. | `rootfs`, `RunBudget` and shared path rules | Missing/empty extraction, entry-limit and expired-budget tests. |
+| Configuration and module observations, file size and SHA-256 derive from the admitted file handle. | Stage 04 and `files` | File-size-change tests, hardware tests and real SquashFS extraction checks. |
+| Expired publication budgets and invalid output names cause no staging writes or parent-directory creation. | `publish_directory` | `expired_publication_budget_does_not_start_writing` and `invalid_publication_name_leaves_its_parent_absent`. |
+| A completed workspace becomes visible through one no-replace rename after verification. | `publish` and `integrity` | Concurrent-publication, disk-full cleanup and pre-rename manifest tests. |
+| Integrity hashes, source replay and golden references establish different checks. | `verify`, `replay` and `golden` | Rehashed tampering tests, source replay and the independent SSC338Q reference. |
+| Firmware content is data throughout static analysis and agent handoff. | Analysis, sandbox and guidance generator | Canonical guidance checks, detached export checks and sandbox integration gates. |
+
+
+Workspace reads retain checked no-follow handles and reject size changes. RootFS
+enumeration distinguishes an absent extraction from an empty one and applies the
+invocation budget before accumulating entries. Publication checks the deadline
+before starting work and before making output visible.
+
+Run the [development checks](architecture.md#development-checks), the relevant
+negative tests and synthetic replay gates. If the private SSC338Q fixtures are
+available, compare all 493 golden members and replay 495 artifacts. Record missing
+external validations as **NOT VERIFIED**. [Executed evidence](../VALIDATION.md)

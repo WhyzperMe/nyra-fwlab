@@ -10,3 +10,8 @@
 .env.*
 __pycache__/
 *.pyc
+
+# Local agent and contributor notes are not part of the public repository.
+/AGENTS.md
+/CLAUDE.md
+/CONTRIBUTING.md

@@ -2,14 +2,14 @@
 
 ```text
 nyra-fw-cli
-  ├── nyra-fw-core
-  ├── nyra-fw-formats
-  │     └── nyra-fw-core
-  └── nyra-fw-workspace
-        ├── nyra-fw-analysis
-        │     └── nyra-fw-core
-        ├── nyra-fw-formats
-        └── nyra-fw-core
+  â”œâ”€â”€ nyra-fw-core
+  â”œâ”€â”€ nyra-fw-formats
+  â”‚     â””â”€â”€ nyra-fw-core
+  â””â”€â”€ nyra-fw-workspace
+        â”œâ”€â”€ nyra-fw-analysis
+        â”‚     â””â”€â”€ nyra-fw-core
+        â”œâ”€â”€ nyra-fw-formats
+        â””â”€â”€ nyra-fw-core
 ```
 
 The CLI controls invocation, resource limits and the Rayon pool. Core provides contracts and shared path rules. Formats validate byte ranges and recover data without filesystem access. Analysis inspects immutable byte slices and parsed records. Workspace orchestrates the stages, invokes isolated tools and publishes results.
@@ -53,7 +53,7 @@ Independent decoders, ELF reports, archive writes and private-stage hashing run 
 
 ## Contracts
 
-New reports must identify their schema and source, retain uncertainty, and participate in workspace verification. Schema tests check generated reports against their contracts. [Workspace schema](workspace-schema.md) · [Security model](security.md)
+New reports must identify their schema and source, retain uncertainty, and participate in workspace verification. Schema tests check generated reports against their contracts. [Workspace schema](workspace-schema.md) Â· [Security model](security.md)
 
 ## Pipeline contracts
 
@@ -67,7 +67,7 @@ RootFS enumeration uses directory handles, rejects links and applies the invocat
 entry and deadline limits while collecting directory entries. ELF indexing, extraction
 indexing and Stage 04 share that implementation. Prefix admission and ELF reads use
 one checked file handle. Stage 04 hashes the same bytes used for configuration and
-module observations. [P0 contracts and regression checks](p0-contracts.md)
+module observations. [Safety contracts and regression checks](security.md#safety-contracts)
 
 One per-publication RootFS inventory now owns the admitted sorted paths and
 fingerprints consumed by ELF, checksum and hardware indexing. Successful ELF
@@ -117,3 +117,23 @@ Preserved-input replay re-derives the candidate report and applies the recorded 
 CI builds the locked release twice in separate target directories and compares the CLI binaries byte for byte on each host. The MSVC release links with a deterministic PE timestamp and records the PDB filename without its build directory. [Microsoft linker option](https://learn.microsoft.com/en-us/cpp/build/reference/pdbaltpath-use-alternate-pdb-path)
 
 Use `python -B scripts/build-release.py --target-dir target` to build a distributable native executable. The script passes source-path remappings through Cargo to the workspace and its dependencies, then checks the CLI for local build prefixes in UTF-8 and UTF-16. CI uses this command for both release builds and runs smoke tests directly against the checked binary. Debug symbols such as PDB files can retain linker-generated paths. Publish the checked CLI executable and keep the remaining build directory private. [Rust compiler path remapping](https://doc.rust-lang.org/rustc/remap-source-paths.html)
+
+## Development checks
+
+Use the pinned toolchain and lockfiles. Run these checks before publishing code:
+
+```bash
+cargo fmt --all -- --check
+cargo check --workspace --all-targets --locked
+cargo clippy --workspace --all-targets --locked -- -D warnings
+cargo test --workspace --locked
+python -B -m unittest discover -s tests -p "test_*.py"
+cargo doc --workspace --no-deps --locked
+python -B scripts/build-release.py
+```
+
+Set `RUSTDOCFLAGS="-D warnings"` for the documentation build, using your shell's
+syntax for environment variables. Parser changes also need the matching bounded
+[fuzz target](../fuzz/README.md). Report changes must update their schema in
+`schemas/` and remain covered by the generated-report checks. Firmware, logs and
+decompiler output stay data; no test may execute recovered code or flash a device.
