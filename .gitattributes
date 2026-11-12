@@ -1,0 +1,10 @@
+* text=auto eol=lf
+*.bin binary
+*.img binary
+*.pkg binary
+*.zip binary
+*.gz binary
+*.dtb binary
+*.tar binary
+*.squashfs binary
+fuzz/corpus/** binary

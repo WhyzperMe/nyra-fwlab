@@ -1,0 +1,306 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra-fwlab.invalid/schemas/candidates.schema.json",
+  "title": "NYRA FWLab candidate report",
+  "description": "Bounded discovery of embedded structures in unrecognized input, at analysis/workspace/candidates.json.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "source_sha256": {
+      "type": "string"
+    },
+    "input_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "bounds": {
+      "type": "object",
+      "properties": {
+        "max_hits_per_signature": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_validation_attempts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_decoded_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_depth": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_candidates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_validation_bytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "max_hits_per_signature",
+        "max_validation_attempts",
+        "max_decoded_bytes",
+        "max_depth",
+        "max_candidates",
+        "max_validation_bytes"
+      ],
+      "additionalProperties": false
+    },
+    "outcome": {
+      "enum": [
+        "no_signatures",
+        "signatures_without_validation",
+        "single_structure",
+        "multiple_disjoint_structures",
+        "ambiguous"
+      ]
+    },
+    "signature_hits": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "hits_not_examined": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "hits_explained_by_structure": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "validation_attempts": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "decoded_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "budget_exhausted": {
+      "type": "boolean"
+    },
+    "entropy": {
+      "type": "object",
+      "properties": {
+        "block_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "blocks": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "high_entropy_blocks": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "uniform_fill_blocks": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "block_bytes",
+        "blocks",
+        "high_entropy_blocks",
+        "uniform_fill_blocks"
+      ],
+      "additionalProperties": false
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "kind": {
+            "enum": [
+              "pihc",
+              "zip",
+              "gzip",
+              "squashfs",
+              "squashfs_big_endian",
+              "uimage",
+              "elf",
+              "fdt",
+              "ubi",
+              "xz",
+              "bzip2",
+              "zstd"
+            ]
+          },
+          "container": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "depth": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "extent": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "signature_only",
+              "structure_validated",
+              "payload_verified",
+              "rejected"
+            ]
+          },
+          "reason": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "enum": [
+                  "no_parser_in_this_build",
+                  "attempt_budget_exhausted",
+                  "decode_budget_exhausted",
+                  "validation_budget_exhausted",
+                  "zip_end_budget_exhausted"
+                ]
+              }
+            ]
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "passed": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "name",
+                "passed"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "nested_in": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "conflicts_with": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "carvable": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "container",
+          "depth",
+          "offset",
+          "extent",
+          "status",
+          "reason",
+          "checks",
+          "nested_in",
+          "conflicts_with",
+          "carvable"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "next_steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "enum": [
+              "analyze_carved_candidate",
+              "resolve_overlapping_candidates",
+              "structure_without_decoder",
+              "signature_without_decoder",
+              "budget_exhausted",
+              "high_entropy_no_signature",
+              "mostly_padding_no_signature",
+              "no_known_signature"
+            ]
+          },
+          "candidates": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "candidates",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "limitation": {
+      "type": "string"
+    },
+    "validation_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "zip_ends_not_examined": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "source_sha256",
+    "input_bytes",
+    "bounds",
+    "outcome",
+    "signature_hits",
+    "hits_not_examined",
+    "hits_explained_by_structure",
+    "validation_attempts",
+    "decoded_bytes",
+    "budget_exhausted",
+    "entropy",
+    "candidates",
+    "next_steps",
+    "limitation",
+    "validation_bytes",
+    "zip_ends_not_examined"
+  ],
+  "additionalProperties": false
+}

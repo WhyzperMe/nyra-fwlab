@@ -1,0 +1,534 @@
+{
+  "p1": [
+    {
+      "elapsed_ns": 781424484,
+      "outcome": "published",
+      "phases": [
+        {
+          "calls": 1,
+          "elapsed_ns": 9707604,
+          "phase": "input_read"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 11642000,
+          "phase": "input_hash"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 38687089,
+          "phase": "recovery"
+        },
+        {
+          "calls": 2,
+          "elapsed_ns": 338659075,
+          "phase": "staging"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 260943261,
+          "phase": "analysis"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 63755099,
+          "phase": "verify_stage"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 30423,
+          "phase": "publish"
+        }
+      ],
+      "schema_version": 1,
+      "workers": 8,
+      "process_seconds": 0.7852341379993959
+    },
+    {
+      "elapsed_ns": 861773046,
+      "outcome": "published",
+      "phases": [
+        {
+          "calls": 1,
+          "elapsed_ns": 9250537,
+          "phase": "input_read"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 11632464,
+          "phase": "input_hash"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 64285623,
+          "phase": "recovery"
+        },
+        {
+          "calls": 2,
+          "elapsed_ns": 357684274,
+          "phase": "staging"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 339150295,
+          "phase": "analysis"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 48388047,
+          "phase": "verify_stage"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 25323,
+          "phase": "publish"
+        }
+      ],
+      "schema_version": 1,
+      "workers": 8,
+      "process_seconds": 0.8657043849998445
+    },
+    {
+      "elapsed_ns": 754974579,
+      "outcome": "published",
+      "phases": [
+        {
+          "calls": 1,
+          "elapsed_ns": 9434338,
+          "phase": "input_read"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 11621134,
+          "phase": "input_hash"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 49880969,
+          "phase": "recovery"
+        },
+        {
+          "calls": 2,
+          "elapsed_ns": 346700845,
+          "phase": "staging"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 262320033,
+          "phase": "analysis"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 41736352,
+          "phase": "verify_stage"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 28747,
+          "phase": "publish"
+        }
+      ],
+      "schema_version": 1,
+      "workers": 8,
+      "process_seconds": 0.758245793000242
+    },
+    {
+      "elapsed_ns": 701518327,
+      "outcome": "published",
+      "phases": [
+        {
+          "calls": 1,
+          "elapsed_ns": 11185273,
+          "phase": "input_read"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 13787750,
+          "phase": "input_hash"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 49817846,
+          "phase": "recovery"
+        },
+        {
+          "calls": 2,
+          "elapsed_ns": 325525464,
+          "phase": "staging"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 228199145,
+          "phase": "analysis"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 41104641,
+          "phase": "verify_stage"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 31092,
+          "phase": "publish"
+        }
+      ],
+      "schema_version": 1,
+      "workers": 8,
+      "process_seconds": 0.7058737540000948
+    },
+    {
+      "elapsed_ns": 705045333,
+      "outcome": "published",
+      "phases": [
+        {
+          "calls": 1,
+          "elapsed_ns": 12466597,
+          "phase": "input_read"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 11630306,
+          "phase": "input_hash"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 44755284,
+          "phase": "recovery"
+        },
+        {
+          "calls": 2,
+          "elapsed_ns": 350928679,
+          "phase": "staging"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 207570303,
+          "phase": "analysis"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 47198072,
+          "phase": "verify_stage"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 22188,
+          "phase": "publish"
+        }
+      ],
+      "schema_version": 1,
+      "workers": 8,
+      "process_seconds": 0.708489562000068
+    },
+    {
+      "elapsed_ns": 741068655,
+      "outcome": "published",
+      "phases": [
+        {
+          "calls": 1,
+          "elapsed_ns": 8964082,
+          "phase": "input_read"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 11592353,
+          "phase": "input_hash"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 57436838,
+          "phase": "recovery"
+        },
+        {
+          "calls": 2,
+          "elapsed_ns": 328586937,
+          "phase": "staging"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 258025825,
+          "phase": "analysis"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 46117016,
+          "phase": "verify_stage"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 30485,
+          "phase": "publish"
+        }
+      ],
+      "schema_version": 1,
+      "workers": 8,
+      "process_seconds": 0.7516130670001075
+    }
+  ],
+  "p2": [
+    {
+      "elapsed_ns": 794682774,
+      "outcome": "published",
+      "phases": [
+        {
+          "calls": 1,
+          "elapsed_ns": 11207283,
+          "phase": "input_read"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 12477718,
+          "phase": "input_hash"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 48489870,
+          "phase": "recovery"
+        },
+        {
+          "calls": 2,
+          "elapsed_ns": 335356027,
+          "phase": "staging"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 314732868,
+          "phase": "analysis"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 42686166,
+          "phase": "verify_stage"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 29073,
+          "phase": "publish"
+        }
+      ],
+      "schema_version": 1,
+      "workers": 8,
+      "process_seconds": 0.7978382609999244
+    },
+    {
+      "elapsed_ns": 756579990,
+      "outcome": "published",
+      "phases": [
+        {
+          "calls": 1,
+          "elapsed_ns": 10269838,
+          "phase": "input_read"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 11670060,
+          "phase": "input_hash"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 50022279,
+          "phase": "recovery"
+        },
+        {
+          "calls": 2,
+          "elapsed_ns": 367525286,
+          "phase": "staging"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 234762900,
+          "phase": "analysis"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 51605003,
+          "phase": "verify_stage"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 33882,
+          "phase": "publish"
+        }
+      ],
+      "schema_version": 1,
+      "workers": 8,
+      "process_seconds": 0.7605443709999236
+    },
+    {
+      "elapsed_ns": 734558202,
+      "outcome": "published",
+      "phases": [
+        {
+          "calls": 1,
+          "elapsed_ns": 12265958,
+          "phase": "input_read"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 11735533,
+          "phase": "input_hash"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 47515318,
+          "phase": "recovery"
+        },
+        {
+          "calls": 2,
+          "elapsed_ns": 368834313,
+          "phase": "staging"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 218952379,
+          "phase": "analysis"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 40333595,
+          "phase": "verify_stage"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 25502,
+          "phase": "publish"
+        }
+      ],
+      "schema_version": 1,
+      "workers": 8,
+      "process_seconds": 0.7379489360000662
+    },
+    {
+      "elapsed_ns": 747106009,
+      "outcome": "published",
+      "phases": [
+        {
+          "calls": 1,
+          "elapsed_ns": 9497171,
+          "phase": "input_read"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 13057734,
+          "phase": "input_hash"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 57199406,
+          "phase": "recovery"
+        },
+        {
+          "calls": 2,
+          "elapsed_ns": 333075938,
+          "phase": "staging"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 246197929,
+          "phase": "analysis"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 54682192,
+          "phase": "verify_stage"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 43335,
+          "phase": "publish"
+        }
+      ],
+      "schema_version": 1,
+      "workers": 8,
+      "process_seconds": 0.7506452750003518
+    },
+    {
+      "elapsed_ns": 760660410,
+      "outcome": "published",
+      "phases": [
+        {
+          "calls": 1,
+          "elapsed_ns": 9506634,
+          "phase": "input_read"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 11617689,
+          "phase": "input_hash"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 48217345,
+          "phase": "recovery"
+        },
+        {
+          "calls": 2,
+          "elapsed_ns": 352743725,
+          "phase": "staging"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 266957193,
+          "phase": "analysis"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 41354134,
+          "phase": "verify_stage"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 30022,
+          "phase": "publish"
+        }
+      ],
+      "schema_version": 1,
+      "workers": 8,
+      "process_seconds": 0.7636880599993674
+    },
+    {
+      "elapsed_ns": 727805465,
+      "outcome": "published",
+      "phases": [
+        {
+          "calls": 1,
+          "elapsed_ns": 9999191,
+          "phase": "input_read"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 11585177,
+          "phase": "input_hash"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 44193525,
+          "phase": "recovery"
+        },
+        {
+          "calls": 2,
+          "elapsed_ns": 358099743,
+          "phase": "staging"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 227696121,
+          "phase": "analysis"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 39634342,
+          "phase": "verify_stage"
+        },
+        {
+          "calls": 1,
+          "elapsed_ns": 24129,
+          "phase": "publish"
+        }
+      ],
+      "schema_version": 1,
+      "workers": 8,
+      "process_seconds": 0.7306581439997899
+    }
+  ]
+}

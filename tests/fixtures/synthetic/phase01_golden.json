@@ -1,0 +1,29 @@
+{
+  "firmware_sha256": "cff46d8e3cc8228c75a584353fcc4df7090798753a83ba691213508b431171a8",
+  "archive_offset": 640,
+  "phase": 1,
+  "rotation": 0,
+  "parse": {
+    "signatures": 2,
+    "eligible_files": 2
+  },
+  "summary": {
+    "phase01_crc_ok": 1,
+    "original_crc_ok": 1
+  },
+  "bytes_written": 3125,
+  "files": [
+    {
+      "name": "mnt/mtd/ipc/test_motor.dat",
+      "status": "phase01_crc_ok",
+      "size": 3100,
+      "sha256": "ded1e2ad902c048657284e92be4dd1abf22e7fe250a29ac3e8c7bf6d1865b41e"
+    },
+    {
+      "name": "config/camera.ini",
+      "status": "original_crc_ok",
+      "size": 25,
+      "sha256": "11a83390d712731038c3ac1d75b1611414097eabf2683e4b11bdb51a1cd72393"
+    }
+  ]
+}

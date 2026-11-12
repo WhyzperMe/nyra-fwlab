@@ -1,0 +1,53 @@
+{
+  "cases": [
+    {
+      "exhaustive": false,
+      "expected": [
+        {
+          "kind": "uimage",
+          "offset": 2048,
+          "extent": 3332199,
+          "sha256": "e45d35743c1efb21c719eee31d004de4f8a300802fcb3eb2615b9ee4c287b3f1"
+        },
+        {
+          "kind": "uimage",
+          "offset": 2112,
+          "extent": 3332135,
+          "sha256": "336b1f33399f2c14ee7ac05e875804403a197797a3f027d1b0bd1b206873a922"
+        },
+        {
+          "extent": 4921612,
+          "kind": "squashfs",
+          "offset": 3335168,
+          "sha256": "3b5bdcc099d729a2153be42ad1b82c907da0352d25d484895b11fad53b887573"
+        }
+      ],
+      "file": "openwrt-25.12.6-ramips-mt7621-tplink_ec330-g5u-v1-squashfs-sysupgrade.bin",
+      "id": "openwrt-ramips-ec330-g5u-v1",
+      "sha256": "fddf069141f169292bb1989c79d216b3ec6f01f3dafa726f0f9da5e635ec7ca3",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/ramips/mt7621/openwrt-25.12.6-ramips-mt7621-tplink_ec330-g5u-v1-squashfs-sysupgrade.bin"
+    },
+    {
+      "exhaustive": false,
+      "expected": [
+        {
+          "kind": "uimage",
+          "offset": 0,
+          "extent": 2750881,
+          "sha256": "d4f6cd3f89c04e10877c1e3c0b93b16cfce4b38a40887bb37fda3e79f191ab92"
+        },
+        {
+          "extent": 4515572,
+          "kind": "squashfs",
+          "offset": 2752512,
+          "sha256": "79c4007fcdd839f3733fb65174c261dfb533fd6e0d09af49bedfb3d0a3022157"
+        }
+      ],
+      "file": "openwrt-25.12.6-ath79-generic-ubnt_unifiac-lite-squashfs-sysupgrade.bin",
+      "id": "openwrt-ath79-unifiac-lite",
+      "sha256": "c94b78cb3472b809f257dee1a01613b903326bf19aba1c817421a6369b4923c8",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/ath79/generic/openwrt-25.12.6-ath79-generic-ubnt_unifiac-lite-squashfs-sysupgrade.bin"
+    }
+  ],
+  "schema_version": 1
+}

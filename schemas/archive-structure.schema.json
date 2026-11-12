@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra-fwlab.invalid/schemas/archive-structure.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {"const": 1},
+    "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "format": {"enum": ["zip", "tar"]},
+    "structural_state": {
+      "enum": ["central_and_local_metadata_validated", "tar_headers_and_member_bounds_validated"]
+    },
+    "archive_bytes": {"type": "integer", "minimum": 22},
+    "regular_members": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "header_offset": {"type": "integer", "minimum": 0},
+          "payload_offset": {"type": "integer", "minimum": 0},
+          "stored_bytes": {"type": "integer", "minimum": 0},
+          "declared_decoded_bytes": {"type": "integer", "minimum": 0},
+          "declared_payload_crc32": {"type": ["integer", "null"], "minimum": 0, "maximum": 4294967295}
+        },
+        "required": ["name", "header_offset", "payload_offset", "stored_bytes", "declared_decoded_bytes", "declared_payload_crc32"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["schema_version", "source_sha256", "format", "structural_state", "archive_bytes", "regular_members"],
+  "additionalProperties": false
+}

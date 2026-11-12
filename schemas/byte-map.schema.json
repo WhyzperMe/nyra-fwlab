@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra-fwlab.invalid/schemas/byte-map.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "input_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "scan_budget_exhausted": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "start": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "end": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "type": {
+                "const": "artifact"
+              },
+              "path": {
+                "type": "string"
+              },
+              "verification": {
+                "enum": [
+                  "original_crc32",
+                  "recovered_crc32",
+                  "header_validated",
+                  "unverified"
+                ]
+              }
+            },
+            "required": [
+              "start",
+              "end",
+              "type",
+              "path",
+              "verification"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "start": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "end": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "type": {
+                "const": "candidate"
+              },
+              "id": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "kind": {
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "structure_validated",
+                  "payload_verified"
+                ]
+              }
+            },
+            "required": [
+              "start",
+              "end",
+              "type",
+              "id",
+              "kind",
+              "status"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "end": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "kind": {
+            "enum": [
+              "unmapped",
+              "zero_fill",
+              "erased_byte_fill",
+              "claimed",
+              "multiple_claims"
+            ]
+          },
+          "artifact_claims": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "candidate_claims": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "start",
+          "end",
+          "kind",
+          "artifact_claims",
+          "candidate_claims"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "source_sha256",
+    "input_bytes",
+    "scan_budget_exhausted",
+    "claims",
+    "regions"
+  ],
+  "additionalProperties": false
+}

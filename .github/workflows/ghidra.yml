@@ -1,0 +1,23 @@
+name: Provisioned Linux integration
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ghidra:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: [self-hosted, linux, nyra-ghidra]
+    timeout-minutes: 20
+    env:
+      NYRA_EXPECT_GHIDRA_VERSION: ${{ vars.NYRA_GHIDRA_VERSION }}
+      NYRA_EXPECT_JAVA_VERSION: ${{ vars.NYRA_JAVA_VERSION }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Build locked release
+        run: python3 -B scripts/build-release.py --target-dir target
+      - name: SquashFS sandbox integration
+        run: bash scripts/check-squashfs-gate.sh target/release/nyra-fw
+      - name: Ghidra and sandbox integration
+        run: bash scripts/check-ghidra-gate.sh target/release/nyra-fw

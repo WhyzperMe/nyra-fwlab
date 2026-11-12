@@ -1,0 +1,27 @@
+[package]
+name = "nyra-fw-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Offline firmware recovery CLI"
+publish = false
+
+[[bin]]
+name = "nyra-fw"
+path = "src/main.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+nyra-fw-core = { path = "../nyra-fw-core" }
+nyra-fw-formats = { path = "../nyra-fw-formats" }
+nyra-fw-workspace = { path = "../nyra-fw-workspace" }
+clap.workspace = true
+rayon.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "threads": 8,
+  "iterations": 15,
+  "binaries": {
+    "baseline": {
+      "version": "nyra-fw 0.10.1",
+      "sha256": "0fbe8fc26fe4cae3294b75384fba52d120200b029943f584df3bdef12d0c3b0f"
+    },
+    "candidate": {
+      "version": "nyra-fw 0.10.1",
+      "sha256": "980f8558aee3bcdb26de9fc1de93fc2bcd97646fb4814ec2ba838b9a44278e55"
+    }
+  },
+  "workloads": {
+    "many_small_files": {
+      "bytes": 68630,
+      "source_sha256": "2cdeeab15c7a99d02163737136e05177948e88e62f3b0bb7bfabf098f5a684c4",
+      "same_source_artifacts": true,
+      "baseline": {
+        "median_seconds": 0.3462443959997472,
+        "p95_seconds": 0.4031456820002859,
+        "max_peak_rss_mib": 7.1484375,
+        "median_mib_per_second": 0.18903026039158977
+      },
+      "candidate": {
+        "median_seconds": 0.3410577189997639,
+        "p95_seconds": 0.43863308199979656,
+        "max_peak_rss_mib": 6.96484375,
+        "median_mib_per_second": 0.19190496120982456
+      }
+    },
+    "large_sparse": {
+      "bytes": 134217728,
+      "source_sha256": "254bcc3fc4f27172636df4bf32de9f107f620d559b20d760197e452b97453917",
+      "same_source_artifacts": true,
+      "baseline": {
+        "median_seconds": 0.4683179369994832,
+        "p95_seconds": 0.6634034950002388,
+        "max_peak_rss_mib": 133.546875,
+        "median_mib_per_second": 273.3185938170488
+      },
+      "candidate": {
+        "median_seconds": 0.4416978339995694,
+        "p95_seconds": 0.6611165730000721,
+        "max_peak_rss_mib": 133.65234375,
+        "median_mib_per_second": 289.7908709240462
+      }
+    },
+    "hostile_crc": {
+      "bytes": 33555718,
+      "source_sha256": "03a054ac1d61e1e1b9997eaf4537e395068526a2f55eae93e259528cf9152ef0",
+      "same_source_artifacts": true,
+      "baseline": {
+        "median_seconds": 0.22836683100013033,
+        "p95_seconds": 0.2507006089999777,
+        "max_peak_rss_mib": 37.82421875,
+        "median_mib_per_second": 140.13079870234148
+      },
+      "candidate": {
+        "median_seconds": 0.23084937400017225,
+        "p95_seconds": 0.3140061419999256,
+        "max_peak_rss_mib": 37.7734375,
+        "median_mib_per_second": 138.6238388722987
+      }
+    },
+    "reference_firmware": {
+      "bytes": 22797343,
+      "source_sha256": "3928fc7b85f58e0f9b67355284120de849284d47720ccb56895dd141f2fe9b04",
+      "same_source_artifacts": true,
+      "baseline": {
+        "median_seconds": 0.6537120230004803,
+        "p95_seconds": 1.0056093279999914,
+        "max_peak_rss_mib": 84.71484375,
+        "median_mib_per_second": 33.25813161828268
+      },
+      "candidate": {
+        "median_seconds": 0.6852253679999194,
+        "p95_seconds": 0.863602661999721,
+        "max_peak_rss_mib": 84.296875,
+        "median_mib_per_second": 31.72859838050591
+      }
+    }
+  }
+}

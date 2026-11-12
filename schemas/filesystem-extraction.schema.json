@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra-fwlab.invalid/schemas/filesystem-extraction.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {"const": 1},
+    "total_regular_bytes": {"type": "integer", "minimum": 0},
+    "items_seen": {"type": "integer", "minimum": 0},
+    "symlinks_replaced_with_metadata": {"type": "integer", "minimum": 0},
+    "excluded_subtrees": {"enum": [[], ["dev"]]},
+    "no_extracted_executables_were_run": {"const": true}
+  },
+  "required": [
+    "schema_version", "total_regular_bytes", "items_seen",
+    "symlinks_replaced_with_metadata", "excluded_subtrees",
+    "no_extracted_executables_were_run"
+  ],
+  "additionalProperties": false
+}

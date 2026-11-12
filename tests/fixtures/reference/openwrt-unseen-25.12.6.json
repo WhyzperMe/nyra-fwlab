@@ -1,0 +1,2150 @@
+{
+  "cases": [
+    {
+      "exhaustive": true,
+      "expected": [],
+      "file": "openwrt-25.12.6-bcm53xx-generic-buffalo_wzr-900dhp-squashfs.factory-DHP-EU.bin",
+      "id": "bcm53xx-generic-buffalo-wzr-900dhp-squashfs-factory-dhp-eu-bin",
+      "sha256": "7419a365b945b994537bf93f6aed14b6f239783c4b11a3b9dc858eb43cf12bd0",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/bcm53xx/generic/openwrt-25.12.6-bcm53xx-generic-buffalo_wzr-900dhp-squashfs.factory-DHP-EU.bin"
+    },
+    {
+      "exhaustive": true,
+      "expected": [
+        {
+          "extent": 3158542,
+          "kind": "uimage",
+          "offset": 2048,
+          "sha256": "6d4c45c5b013801f588f6abd61f8f2b6ab01b655afa2a2fb08fd89569f5d2409",
+          "status": "payload_verified"
+        },
+        {
+          "extent": 3158478,
+          "kind": "gzip",
+          "offset": 2112,
+          "sha256": "952f5ba4308b8c9869917df64a723ff3c987d6443ff303cc173e3f1db3a5ddc6",
+          "status": "payload_verified"
+        },
+        {
+          "extent": 4014932,
+          "kind": "squashfs",
+          "offset": 3161600,
+          "sha256": "ae59d9d1df0467d2e05b380492c69e9b19c82525a64ed6b3e3761678d9aac424",
+          "status": "structure_validated"
+        }
+      ],
+      "file": "openwrt-25.12.6-bcm53xx-generic-meraki_mr26-squashfs.sysupgrade.bin",
+      "id": "bcm53xx-generic-meraki-mr26-squashfs-sysupgrade-bin",
+      "sha256": "68a59955f4be5d9a66dbd761d366ab03a54899f4c14d02700261b4a907011484",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/bcm53xx/generic/openwrt-25.12.6-bcm53xx-generic-meraki_mr26-squashfs.sysupgrade.bin"
+    },
+    {
+      "exhaustive": true,
+      "expected": [
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 0,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 131072,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 262144,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 393216,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 524288,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 655360,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 786432,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 917504,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1048576,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1179648,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1310720,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1441792,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1572864,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1703936,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1835008,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1966080,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2097152,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2228224,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2359296,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2490368,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2621440,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2752512,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2883584,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3014656,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3145728,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3276800,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3407872,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3538944,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3670016,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3801088,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3932160,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4063232,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4194304,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4325376,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4456448,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4587520,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4718592,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4849664,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4980736,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5111808,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5242880,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5373952,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5505024,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5509226,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5621822,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5636096,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5694702,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5748858,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5767168,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5860738,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5866498,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5872738,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5878434,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5883982,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5890742,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5896858,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5898240,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5907282,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5910794,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6029312,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6136994,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6160384,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6291456,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6323482,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6332234,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6422528,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6454814,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6553600,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6558478,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6641210,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6684672,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6729670,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6815744,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6823434,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6888554,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6893082,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6946816,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6993942,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7029858,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7077888,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7143854,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7208960,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7249962,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7314122,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7315490,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7340032,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7383326,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7455926,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7471104,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7545994,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7599478,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7602176,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7679546,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7733248,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7743654,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7809650,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7864320,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7875270,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7920574,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7995392,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8029922,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8119262,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8126464,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8220054,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8257536,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8265238,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8349106,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8388608,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8442486,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8519680,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8525706,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8582274,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8650514,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8650752,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8756662,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8781824,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8832098,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8904210,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8912896,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9012758,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9012958,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9043968,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9118222,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9175040,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9190366,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9287194,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9290066,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9306112,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9370430,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9437184,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9472654,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9568256,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9583142,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9688878,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9699328,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9764678,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9828162,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9830400,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9884030,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9936742,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9961472,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9970510,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10014942,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10071038,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 10092544,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10128026,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10180252,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10181902,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10183520,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10185414,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10187232,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10189058,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10193128,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10197134,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10201076,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10201518,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10201808,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10203082,
+          "status": "structure_validated"
+        }
+      ],
+      "file": "openwrt-25.12.6-ipq40xx-generic-8dev_jalapeno-squashfs-factory.ubi",
+      "id": "ipq40xx-generic-8dev-jalapeno-squashfs-factory-ubi",
+      "sha256": "6cf6a0c0083ce0708c68787268ed912eb19f3f1acdae7efdc9bd9fabd568bee7",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/ipq40xx/generic/openwrt-25.12.6-ipq40xx-generic-8dev_jalapeno-squashfs-factory.ubi"
+    },
+    {
+      "exhaustive": true,
+      "expected": [
+        {
+          "extent": 10355151,
+          "kind": "fdt",
+          "offset": 0,
+          "sha256": "ae1beea8fe0d7ab75495c42732738cfa28263e39fde51cd3a1e2460ac6cbcf90",
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 180,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 131252,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 262324,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 393396,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 524468,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 655540,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 786612,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 917684,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1048756,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1179828,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1310900,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1441972,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1573044,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1704116,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1835188,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 1966260,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2097332,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2228404,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2359476,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2490548,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2621620,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2752692,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 2883764,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3014836,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3145908,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3276980,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3408052,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3539124,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3670196,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3801268,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 3932340,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4063412,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4194484,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4325556,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4456628,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4587700,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4718772,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4849844,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 4980916,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5111988,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5243060,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5374132,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5505204,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5509406,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5622002,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5636276,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5694882,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5749050,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5767348,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5860930,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5866690,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5872930,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5878626,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5884174,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5890934,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5897050,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 5898420,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5907474,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 5910986,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6029492,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6137186,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6160564,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6291636,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6323674,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6332426,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6413366,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6422708,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6535946,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6553780,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6639610,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6684852,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6726318,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6815924,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6820082,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6885202,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6889730,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 6946996,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 6990590,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7026506,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7078068,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7140502,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7209140,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7246610,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7310770,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7312138,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7340212,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7388822,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7464014,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7471284,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7554082,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7602356,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7611662,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7690302,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7733428,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7760382,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7841154,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7864500,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7906774,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 7952078,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 7995572,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8061426,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8126644,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8154862,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8251558,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8257716,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8296742,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8380610,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8388788,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8473990,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8519860,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8557210,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8613778,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8650932,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8686114,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8782004,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8792262,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8863602,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 8913076,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 8939810,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9044148,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9048358,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9048558,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9149726,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9175220,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9221870,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9306292,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9322794,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9325666,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9401934,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9437364,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9504158,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9568436,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9614646,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9699508,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9724478,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9796182,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9830580,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9863762,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9915534,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 9961652,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 9972342,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10002014,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10046446,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 10092724,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10106638,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10159530,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10211756,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10213386,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10214964,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10216866,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10218672,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10220590,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "ubi",
+          "offset": 10223796,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10228768,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10232706,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10236708,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10237290,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10237576,
+          "status": "structure_validated"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 10238834,
+          "status": "structure_validated"
+        }
+      ],
+      "file": "openwrt-25.12.6-ipq40xx-generic-alfa-network_ap120c-ac-squashfs-factory.bin",
+      "id": "ipq40xx-generic-alfa-network-ap120c-ac-squashfs-factory-bin",
+      "sha256": "ae1beea8fe0d7ab75495c42732738cfa28263e39fde51cd3a1e2460ac6cbcf90",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/ipq40xx/generic/openwrt-25.12.6-ipq40xx-generic-alfa-network_ap120c-ac-squashfs-factory.bin"
+    },
+    {
+      "exhaustive": true,
+      "expected": [
+        {
+          "extent": 3257941,
+          "kind": "uimage",
+          "offset": 0,
+          "sha256": "7c1e9c9942820b55d138ae24f08ba8811a3cb39e00d79715df65deaee81d179e",
+          "status": "payload_verified"
+        },
+        {
+          "extent": 5617792,
+          "kind": "squashfs",
+          "offset": 3257941,
+          "sha256": "14c67b4f8273c5ffeadb7eb6f7b33f09440cb40c1c90eb8f5bf579355c5b347b",
+          "status": "structure_validated"
+        }
+      ],
+      "file": "openwrt-25.12.6-lantiq-xrx200-arcadyan_vgv7510kw22-nor-squashfs-sysupgrade.bin",
+      "id": "lantiq-xrx200-arcadyan-vgv7510kw22-nor-squashfs-sysupgrade-bin",
+      "sha256": "43d37c240213789540f8c09da3c4243a5429723c920e8101536594cde7e5360b",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/lantiq/xrx200/openwrt-25.12.6-lantiq-xrx200-arcadyan_vgv7510kw22-nor-squashfs-sysupgrade.bin"
+    },
+    {
+      "exhaustive": true,
+      "expected": [
+        {
+          "extent": 4096,
+          "kind": "fdt",
+          "offset": 0,
+          "sha256": "41f4a2902bf03691404921450b1a83293f8c312f24bd2f8b9194e4eddb89a569",
+          "status": "structure_validated"
+        },
+        {
+          "extent": 5904936,
+          "kind": "gzip",
+          "offset": 4096,
+          "sha256": "11acefd048b48d88b56883ac1e72ad515df31d9070460ce33d63717cd949b560",
+          "status": "payload_verified"
+        },
+        {
+          "extent": 22526,
+          "kind": "fdt",
+          "offset": 5910528,
+          "sha256": "e275b335bd4c09329fc8bdfca749745ac3d700b5b256f5bbe1cba9858eeccfcf",
+          "status": "structure_validated"
+        },
+        {
+          "extent": 5053466,
+          "kind": "squashfs",
+          "offset": 5935104,
+          "sha256": "315599252773e95fe1cc69567f0bc9b3ee6ee27cf9e1ffe798c84590e117e06b",
+          "status": "structure_validated"
+        }
+      ],
+      "file": "openwrt-25.12.6-mediatek-filogic-abt_asr3000-squashfs-sysupgrade.itb",
+      "id": "mediatek-filogic-abt-asr3000-squashfs-sysupgrade-itb",
+      "sha256": "e79ad53a0f3a698ff53a2def8992703dd9a5c00e539e0d62c92b7790ab36e6b6",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/mediatek/filogic/openwrt-25.12.6-mediatek-filogic-abt_asr3000-squashfs-sysupgrade.itb"
+    },
+    {
+      "exhaustive": true,
+      "expected": [
+        {
+          "extent": 4343500,
+          "kind": "fdt",
+          "offset": 2048,
+          "sha256": "3b7880e8125f2673d44e53fbe11e117bc7dd5d989ed2b6227f1ee8b3e3dc85a0",
+          "status": "structure_validated"
+        },
+        {
+          "extent": 19540,
+          "kind": "fdt",
+          "offset": 4325168,
+          "sha256": "07923e83d06161f637c253a01199c9e5ea75c61bb2d27c5292b9d856a0710da7",
+          "status": "structure_validated"
+        },
+        {
+          "extent": 5542262,
+          "kind": "squashfs",
+          "offset": 4346368,
+          "sha256": "66463761ccdc3872728879229fc7605249970e6bbe9af46b24cf4e8bed98b7dd",
+          "status": "structure_validated"
+        }
+      ],
+      "file": "openwrt-25.12.6-mediatek-filogic-acelink_ew-7886cax-squashfs-sysupgrade.bin",
+      "id": "mediatek-filogic-acelink-ew-7886cax-squashfs-sysupgrade-bin",
+      "sha256": "9483c01c70de763ede7498e38e777355ef48c6d7cb9226b4929a882bb8503665",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/mediatek/filogic/openwrt-25.12.6-mediatek-filogic-acelink_ew-7886cax-squashfs-sysupgrade.bin"
+    },
+    {
+      "exhaustive": true,
+      "expected": [
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 1299963,
+          "status": "structure_validated"
+        },
+        {
+          "extent": 3949398,
+          "kind": "squashfs",
+          "offset": 5589504,
+          "sha256": "63e5245faf72ed87b8f40035a6f487d3351855017a6a47c3088f2ddce6953c67",
+          "status": "structure_validated"
+        }
+      ],
+      "file": "openwrt-25.12.6-mvebu-cortexa9-buffalo_ls220de-squashfs-sysupgrade.bin",
+      "id": "mvebu-cortexa9-buffalo-ls220de-squashfs-sysupgrade-bin",
+      "sha256": "098df2988ee8de60828e168e840c6e90116f0f8918734aa09012e166c31f8b19",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/mvebu/cortexa9/openwrt-25.12.6-mvebu-cortexa9-buffalo_ls220de-squashfs-sysupgrade.bin"
+    },
+    {
+      "exhaustive": true,
+      "expected": [
+        {
+          "extent": 6503481,
+          "kind": "uimage",
+          "offset": 1536,
+          "sha256": "3772ed35e5efd23ae255d9ac76e77eafd6c1703a6d35fcdfa409347399993da3",
+          "status": "payload_verified"
+        },
+        {
+          "extent": null,
+          "kind": "xz",
+          "offset": 29355,
+          "status": "structure_validated"
+        },
+        {
+          "extent": 17409,
+          "kind": "fdt",
+          "offset": 6487608,
+          "sha256": "e40f18822c4256ecd3792a5ec2782d9fa8cb146f00f4606176da40fbdd923589",
+          "status": "structure_validated"
+        }
+      ],
+      "file": "openwrt-25.12.6-mvebu-cortexa9-ctera_c200-v2-initramfs-factory.firm",
+      "id": "mvebu-cortexa9-ctera-c200-v2-initramfs-factory-firm",
+      "sha256": "34c48b62b4d724bfd814ec8156e9f2f5e4447d918cbfa9cecd881fff31fb07b9",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/mvebu/cortexa9/openwrt-25.12.6-mvebu-cortexa9-ctera_c200-v2-initramfs-factory.firm"
+    },
+    {
+      "exhaustive": true,
+      "expected": [
+        {
+          "extent": 3851371,
+          "kind": "gzip",
+          "offset": 64,
+          "sha256": "f6519a4f1f130a52542f04a5520898f33cc1efa402a64c342b8da20207da54bb",
+          "status": "payload_verified"
+        },
+        {
+          "extent": 2660468,
+          "kind": "squashfs",
+          "offset": 3866624,
+          "sha256": "53c5fa653d45a779bae10692bb3f5910924f46a9e71685aa1c440c3e1ff486ad",
+          "status": "structure_validated"
+        }
+      ],
+      "file": "openwrt-25.12.6-realtek-rtl838x-allnet_all-sg8208m-squashfs-sysupgrade.bin",
+      "id": "realtek-rtl838x-allnet-all-sg8208m-squashfs-sysupgrade-bin",
+      "sha256": "ac895a54263652c9872d35c1add79cfa04cd07645ca7caffcf8c40a8b643efd5",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/realtek/rtl838x/openwrt-25.12.6-realtek-rtl838x-allnet_all-sg8208m-squashfs-sysupgrade.bin"
+    },
+    {
+      "exhaustive": true,
+      "expected": [
+        {
+          "extent": 2667488,
+          "kind": "squashfs",
+          "offset": 3866752,
+          "sha256": "5de639ecfeb6a83bc6ac1dee1822591ed3393d5d68910d17604de52ff93129dd",
+          "status": "structure_validated"
+        }
+      ],
+      "file": "openwrt-25.12.6-realtek-rtl838x-d-link_dgs-1210-10mp-f-squashfs-factory_image1.bin",
+      "id": "realtek-rtl838x-d-link-dgs-1210-10mp-f-squashfs-factory-image1-bin",
+      "sha256": "b594bcc10c05b89df6502d97097e2afe6813204bcec5fd8521f3273cddbf4553",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/realtek/rtl838x/openwrt-25.12.6-realtek-rtl838x-d-link_dgs-1210-10mp-f-squashfs-factory_image1.bin"
+    }
+  ],
+  "schema_version": 1
+}

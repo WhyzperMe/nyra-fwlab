@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra-fwlab.invalid/schemas/candidate-selection.schema.json",
+  "title": "NYRA FWLab candidate selection",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "id": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "source_sha256",
+    "id"
+  ],
+  "additionalProperties": false
+}

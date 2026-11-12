@@ -1,0 +1,82 @@
+[package]
+name = "nyra-fw-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2024"
+rust-version = "1.95"
+license = "MIT"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+nyra-fw-analysis = { path = "../crates/nyra-fw-analysis" }
+nyra-fw-core = { path = "../crates/nyra-fw-core" }
+nyra-fw-formats = { path = "../crates/nyra-fw-formats" }
+
+[[bin]]
+name = "fuzz_pihc_header"
+path = "fuzz_targets/fuzz_pihc_header.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_pihc_crypto"
+path = "fuzz_targets/fuzz_pihc_crypto.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_pihc_recover"
+path = "fuzz_targets/fuzz_pihc_recover.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_zip_archive"
+path = "fuzz_targets/fuzz_zip_archive.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_squashfs"
+path = "fuzz_targets/fuzz_squashfs.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_elf"
+path = "fuzz_targets/fuzz_elf.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_ghidra_exports"
+path = "fuzz_targets/fuzz_ghidra_exports.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_candidates"
+path = "fuzz_targets/fuzz_candidates.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "fuzz_tar"
+path = "fuzz_targets/fuzz_tar.rs"
+test = false
+doc = false
+bench = false
+
+[workspace]
+members = ["."]

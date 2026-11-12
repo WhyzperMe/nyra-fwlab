@@ -1,0 +1,46 @@
+[workspace]
+resolver = "3"
+members = [
+  "crates/nyra-fw-cli",
+  "crates/nyra-fw-core",
+  "crates/nyra-fw-formats",
+  "crates/nyra-fw-analysis",
+  "crates/nyra-fw-workspace",
+]
+
+[workspace.package]
+edition = "2024"
+version = "0.10.1"
+rust-version = "1.95"
+license = "MIT"
+authors = ["Whyzper.Me"]
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+# Hostile input must produce an error, never a panic. Tests may unwrap (clippy.toml).
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
+todo = "deny"
+unimplemented = "deny"
+dbg_macro = "deny"
+
+[workspace.dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+hex = "0.4"
+thiserror = "2.0"
+rayon = "1.10"
+crc32fast = "1.4"
+flate2 = "1.1"
+aes = "0.8.4"
+clap = { version = "4.5", features = ["derive"] }
+tempfile = "3.13"
+cap-std = "4.0.3"
+cap-fs-ext = "4.0.3"
+rustix = { version = "1.1.6", features = ["fs"] }
+memchr = "2.8"
+goblin = { version = "0.10.7", default-features = false, features = ["std", "elf32", "elf64", "endian_fd"] }

@@ -1,0 +1,34 @@
+[package]
+name = "nyra-fw-workspace"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Verified recovery workspace generator"
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+nyra-fw-analysis = { path = "../nyra-fw-analysis" }
+rayon.workspace = true
+nyra-fw-core = { path = "../nyra-fw-core" }
+nyra-fw-formats = { path = "../nyra-fw-formats" }
+serde_json.workspace = true
+serde.workspace = true
+sha2.workspace = true
+hex.workspace = true
+tempfile.workspace = true
+cap-std.workspace = true
+cap-fs-ext.workspace = true
+
+[target.'cfg(unix)'.dependencies]
+rustix.workspace = true
+
+[target.'cfg(target_os = "linux")'.dependencies]
+tar = { version = "0.4.46", default-features = false }
+
+[dev-dependencies]
+flate2.workspace = true

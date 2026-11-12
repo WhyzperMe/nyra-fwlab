@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra-fwlab.invalid/schemas/agent-index.schema.json",
+  "title": "NYRA FWLab agent index",
+  "description": "Entry point of a workspace for coding agents, at analysis/workspace/agent-index.json. Contains no text taken from the firmware.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "kind": {
+      "const": "nyra-fw-agent-index"
+    },
+    "producer": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "filename": {
+          "type": "string"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "filename",
+        "bytes",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "detected_format": {
+      "type": "string"
+    },
+    "recovery_state": {
+      "enum": [
+        "recognized_members_verified",
+        "partial",
+        "preserved_and_inspected"
+      ]
+    },
+    "full_flash_verified": {
+      "const": false
+    },
+    "counts": {
+      "type": "object",
+      "properties": {
+        "artifacts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "verified_members": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed_members": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "elf_objects": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "decompiled_functions": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "artifacts",
+        "verified_members",
+        "failed_members",
+        "elf_objects",
+        "decompiled_functions"
+      ],
+      "additionalProperties": false
+    },
+    "candidates": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "report": {
+              "type": "string"
+            },
+            "outcome": {
+              "enum": [
+                "no_signatures",
+                "signatures_without_validation",
+                "single_structure",
+                "multiple_disjoint_structures",
+                "ambiguous"
+              ]
+            },
+            "top_level_validated": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "carved_artifacts": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "report",
+            "outcome",
+            "top_level_validated",
+            "carved_artifacts"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "hardware": {
+      "type": "object",
+      "properties": {
+        "identification": {
+          "enum": [
+            "verified_bytes",
+            "structural_evidence",
+            "static_hint",
+            "unknown"
+          ]
+        },
+        "candidate_soc": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "candidate_sensor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "identification",
+        "candidate_soc",
+        "candidate_sensor"
+      ],
+      "additionalProperties": false
+    },
+    "instructions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "read_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "ready",
+              "blocked"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "read_first": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "state",
+          "title",
+          "read_first"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "directories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "trust": {
+            "type": "string",
+            "enum": [
+              "authored_guidance",
+              "computed_metadata",
+              "firmware_derived_text",
+              "firmware_bytes"
+            ]
+          },
+          "editable": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "path",
+          "role",
+          "trust",
+          "editable"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "trust": {
+            "type": "string",
+            "enum": [
+              "authored_guidance",
+              "computed_metadata",
+              "firmware_derived_text",
+              "firmware_bytes"
+            ]
+          },
+          "bytes": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "path",
+          "role",
+          "trust",
+          "bytes",
+          "sha256"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "producer",
+    "source",
+    "detected_format",
+    "recovery_state",
+    "full_flash_verified",
+    "counts",
+    "candidates",
+    "hardware",
+    "instructions",
+    "read_order",
+    "tasks",
+    "directories",
+    "files",
+    "commands",
+    "limitations"
+  ],
+  "additionalProperties": false
+}

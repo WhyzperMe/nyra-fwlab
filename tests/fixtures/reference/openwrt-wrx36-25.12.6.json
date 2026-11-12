@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "openwrt-ipq807x-dynalink-dl-wrx36",
+      "file": "openwrt-25.12.6-qualcommax-ipq807x-dynalink_dl-wrx36-squashfs-sysupgrade.bin",
+      "source_url": "https://downloads.openwrt.org/releases/25.12.6/targets/qualcommax/ipq807x/openwrt-25.12.6-qualcommax-ipq807x-dynalink_dl-wrx36-squashfs-sysupgrade.bin",
+      "sha256": "15a4ad8cf858608ea61d2e974607fd8bdb2fbc4f45093c65286f839b5360ef5e",
+      "exhaustive": false,
+      "expected": [
+        {
+          "kind": "fdt",
+          "offset": 2048,
+          "extent": 5412096,
+          "sha256": "17ac727a831020d2d6dfdaa59e519d6a8ca6d03086fb8e3e74750d54f88a3305"
+        },
+        {
+          "kind": "gzip",
+          "offset": 2284,
+          "extent": 5366417,
+          "sha256": "65d2041dfecb47c68004568ce54a1bf7fd5890c042e9d2968b13f79dfd53d341"
+        },
+        {
+          "kind": "fdt",
+          "offset": 5369028,
+          "extent": 44242,
+          "sha256": "7144c82f2347c9edccb04b33b13d217bab991ab0af0db01cc2381e9c8527e97a"
+        },
+        {
+          "kind": "squashfs",
+          "offset": 5414912,
+          "extent": 7778656,
+          "sha256": "1a830579bb29dbb16293d9ec20cd34574c4c415d3054e048d883a5e46929abcc"
+        }
+      ]
+    }
+  ]
+}

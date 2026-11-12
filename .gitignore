@@ -1,0 +1,12 @@
+/target/
+/workspaces/*
+!/workspaces/.gitkeep
+**/.DS_Store
+**/Thumbs.db
+*.swp
+*.tmp
+*.log
+.env
+.env.*
+__pycache__/
+*.pyc

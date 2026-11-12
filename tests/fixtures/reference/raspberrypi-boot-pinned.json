@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "rpi-start4-elf",
+      "file": "start4.elf",
+      "sha256": "3484b5ddc0f655e0e562680b7e2462ec21177763cc2d884b37d31e53b800bb02",
+      "source_url": "https://raw.githubusercontent.com/raspberrypi/firmware/12eeaa12865869b07db760f4bbb7507ec6f1976c/boot/start4.elf",
+      "exhaustive": true,
+      "expected": [
+        {
+          "kind": "elf",
+          "offset": 0,
+          "extent": 2305632,
+          "sha256": "3484b5ddc0f655e0e562680b7e2462ec21177763cc2d884b37d31e53b800bb02",
+          "status": "structure_validated"
+        }
+      ]
+    },
+    {
+      "id": "rpi-bootcode-bin",
+      "file": "bootcode.bin",
+      "sha256": "e8b59fe10a4daa3cd2b127479f40b9856cfe3677154e8f24ae2aa70e3bb7c8eb",
+      "source_url": "https://raw.githubusercontent.com/raspberrypi/firmware/12eeaa12865869b07db760f4bbb7507ec6f1976c/boot/bootcode.bin",
+      "exhaustive": true,
+      "expected": []
+    },
+    {
+      "id": "rpi-bcm2711-rpi-4-b-dtb",
+      "file": "bcm2711-rpi-4-b.dtb",
+      "sha256": "75761b73c284e26623e4d1624bff13e67bce2ae620880efd81d6571a3739fcfb",
+      "source_url": "https://raw.githubusercontent.com/raspberrypi/firmware/12eeaa12865869b07db760f4bbb7507ec6f1976c/boot/bcm2711-rpi-4-b.dtb",
+      "exhaustive": true,
+      "expected": [
+        {
+          "kind": "fdt",
+          "offset": 0,
+          "extent": 56407,
+          "sha256": "75761b73c284e26623e4d1624bff13e67bce2ae620880efd81d6571a3739fcfb",
+          "status": "structure_validated"
+        }
+      ]
+    }
+  ]
+}

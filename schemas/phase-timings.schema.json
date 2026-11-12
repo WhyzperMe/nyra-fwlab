@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra-fwlab.invalid/schemas/phase-timings.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {"const": 1},
+    "outcome": {"enum": ["published", "reused", "failed"]},
+    "workers": {"type": "integer", "minimum": 1, "maximum": 16},
+    "elapsed_ns": {"type": "integer", "minimum": 0},
+    "phases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "phase": {"enum": ["input_read", "input_hash", "archive_index", "recovery", "staging", "analysis", "squash_fs", "ghidra", "verify_stage", "publish", "verify_reuse"]},
+          "elapsed_ns": {"type": "integer", "minimum": 0},
+          "calls": {"type": "integer", "minimum": 1}
+        },
+        "required": ["phase", "elapsed_ns", "calls"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["schema_version", "outcome", "workers", "elapsed_ns", "phases"],
+  "additionalProperties": false
+}

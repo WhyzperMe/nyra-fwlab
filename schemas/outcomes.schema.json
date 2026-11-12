@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra-fwlab.invalid/schemas/outcomes.schema.json",
+  "title": "NYRA FWLab analysis outcomes",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "container": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "string"
+        },
+        "archive_directory": {
+          "enum": [
+            "absent",
+            "valid",
+            "partial",
+            "malformed",
+            "unsupported"
+          ]
+        },
+        "failure": {
+          "enum": [
+            null,
+            "pihc_recovery_failed",
+            "zip_recovery_failed",
+            "gzip_recovery_failed",
+            "tar_recovery_failed",
+            "magic_only",
+            "unrecognized"
+          ]
+        }
+      },
+      "required": [
+        "format",
+        "archive_directory",
+        "failure"
+      ],
+      "additionalProperties": false
+    },
+    "recovery": {
+      "type": "object",
+      "properties": {
+        "verified_members": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed_entries": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "excluded_entries": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "verified_members",
+        "failed_entries",
+        "excluded_entries"
+      ],
+      "additionalProperties": false
+    },
+    "elf": {
+      "type": "object",
+      "properties": {
+        "analyzed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "parse_errors": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "analyzed",
+        "parse_errors"
+      ],
+      "additionalProperties": false
+    },
+    "squashfs": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "const": "not_requested"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "const": "completed"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "const": "failed"
+            },
+            "category": {
+              "enum": [
+                "unsupported",
+                "configuration",
+                "resource_limit",
+                "io",
+                "invalid_output"
+              ]
+            },
+            "detail": {
+              "enum": [
+                "Requested analysis is unavailable for this input or host.",
+                "External analysis configuration is invalid.",
+                "External analysis exceeded its wall-clock budget.",
+                "External analysis exceeded a resource limit.",
+                "External analysis encountered an I/O failure.",
+                "External analysis failed or its output did not pass validation."
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "category",
+            "detail"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "ghidra": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "const": "not_requested"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "const": "completed"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "state": {
+              "const": "failed"
+            },
+            "category": {
+              "enum": [
+                "unsupported",
+                "configuration",
+                "resource_limit",
+                "io",
+                "invalid_output"
+              ]
+            },
+            "detail": {
+              "enum": [
+                "Requested analysis is unavailable for this input or host.",
+                "External analysis configuration is invalid.",
+                "External analysis exceeded its wall-clock budget.",
+                "External analysis exceeded a resource limit.",
+                "External analysis encountered an I/O failure.",
+                "External analysis failed or its output did not pass validation."
+              ]
+            }
+          },
+          "required": [
+            "state",
+            "category",
+            "detail"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "source_sha256",
+    "container",
+    "recovery",
+    "elf",
+    "squashfs",
+    "ghidra"
+  ],
+  "additionalProperties": false
+}

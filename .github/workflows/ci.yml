@@ -1,0 +1,204 @@
+name: rust
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      extended_fuzz:
+        description: Run each fuzz target for 60 seconds
+        type: boolean
+        default: false
+  schedule:
+    - cron: '22 4 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  verify:
+    if: github.event_name != 'schedule'
+    name: Verify (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8
+        with:
+          toolchain: 1.95.0
+          components: rustfmt, clippy
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+      - name: Check all targets
+        run: cargo check --workspace --all-targets --locked
+      - name: Run tests
+        run: cargo test --workspace --locked
+      - name: Test download and release helpers
+        run: python -B -m unittest discover -s tests -p "test_*.py"
+      - name: Run Clippy
+        run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - name: Build documentation
+        env:
+          RUSTDOCFLAGS: -D warnings
+        run: cargo doc --workspace --no-deps --locked
+      - name: Build release artifacts
+        run: python -B scripts/build-release.py --target-dir target
+      - name: Verify same-host CLI build reproducibility
+        shell: bash
+        run: |
+          python -B scripts/build-release.py --target-dir target/reproducibility
+          binary=nyra-fw
+          if [ "$RUNNER_OS" = Windows ]; then binary=nyra-fw.exe; fi
+          cmp "target/release/$binary" "target/reproducibility/release/$binary"
+      - name: Stage 06 synthetic smoke test
+        shell: bash
+        run: |
+          binary=target/release/nyra-fw
+          if [ "$RUNNER_OS" = Windows ]; then binary="$binary.exe"; fi
+          python scripts/generate_synthetic_fixtures.py --output-dir ./workspaces/ci-generated-fixtures
+          "$binary" scan tests/fixtures/synthetic/pihc-phase01.pkg
+          "$binary" analyze tests/fixtures/synthetic/pihc-phase01.pkg --profile auto --workspace ./workspaces/ci-stage06
+          "$binary" inspect ./workspaces/ci-stage06
+          "$binary" verify ./workspaces/ci-stage06 --golden tests/fixtures/synthetic/phase01_golden.json --replay --agent-ready
+          for variant in stored deflated streamed-stored streamed-deflated; do
+            "$binary" analyze "./workspaces/ci-generated-fixtures/stdlib-zip-$variant.zip" --workspace "./workspaces/ci-zip-$variant" --threads 1
+            "$binary" verify "./workspaces/ci-zip-$variant" --golden "./workspaces/ci-generated-fixtures/stdlib-zip-$variant-golden.json" --replay
+            python scripts/generate_synthetic_fixtures.py --verify-archive-structure "./workspaces/ci-generated-fixtures/stdlib-zip-$variant.zip" "./workspaces/ci-zip-$variant/analysis/archive/structure.json"
+          done
+          "$binary" analyze ./workspaces/ci-generated-fixtures/stdlib-firmware.tar --workspace ./workspaces/ci-tar
+          "$binary" verify ./workspaces/ci-tar --replay --agent-ready
+          python scripts/generate_synthetic_fixtures.py --verify-tar-output ./workspaces/ci-tar/recovered/unverified/tar
+          python scripts/generate_synthetic_fixtures.py --verify-archive-structure ./workspaces/ci-generated-fixtures/stdlib-firmware.tar ./workspaces/ci-tar/analysis/archive/structure.json
+          "$binary" scan ./workspaces/ci-generated-fixtures/stdlib-firmware.gz --json
+          "$binary" analyze ./workspaces/ci-generated-fixtures/stdlib-firmware.gz --workspace ./workspaces/ci-gzip --threads 1
+          "$binary" verify ./workspaces/ci-gzip --replay
+          python scripts/generate_synthetic_fixtures.py --verify-gzip-output ./workspaces/ci-gzip/recovered/images/gzip-payload.bin
+          { printf 'fixture padding\n'; cat tests/fixtures/synthetic/zip-fake-eocd.zip; } > ./workspaces/ci-embedded.bin
+          "$binary" scan ./workspaces/ci-embedded.bin --candidates --json
+          "$binary" analyze ./workspaces/ci-embedded.bin --allow-partial --candidate 0 --workspace ./workspaces/ci-embedded
+          "$binary" verify ./workspaces/ci-embedded --replay --agent-ready
+          {
+            echo "## Synthetic fixture and replay gates"
+            echo "- PIHC golden comparison and replay: PASS"
+            echo "- Python stdlib ZIP and streamed ZIP golden comparisons and replay: PASS"
+            echo "- Python stdlib TAR raw member comparison and replay: PASS"
+            echo "- ZIP and TAR structural metadata checked against Python stdlib: PASS"
+            echo "- Python stdlib gzip replay and decoded payload SHA-256: PASS"
+            echo "- Embedded ZIP candidate selection, replay, and canonical agent handoff: PASS"
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Independent candidate corpus and agent export
+        shell: bash
+        run: |
+          binary=target/release/nyra-fw
+          if [ "$RUNNER_OS" = Windows ]; then binary="$binary.exe"; fi
+          python scripts/generate-candidate-corpus.py workspaces/ci-corpus
+          python scripts/check-corpus.py --binary "$binary" --manifest workspaces/ci-corpus/corpus.json
+          "$binary" export-agent workspaces/ci-embedded -o workspaces/ci-agent
+          "$binary" verify-agent-export workspaces/ci-agent
+
+  unseen-corpus:
+    name: Unseen-family corpus (Linux)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8
+        with:
+          toolchain: 1.95.0
+      - name: Install independent reference tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y squashfs-tools u-boot-tools device-tree-compiler mtd-utils zip binutils shellcheck
+      - name: Check shell scripts
+        run: shellcheck scripts/*.sh
+      - name: Build release binary
+        run: python3 -B scripts/build-release.py --target-dir target
+      - name: Generated valid, damaged, truncated and ambiguous images
+        run: |
+          python3 scripts/generate-unseen-corpus.py "$RUNNER_TEMP/unseen-corpus"
+          python3 scripts/check-corpus.py --binary target/release/nyra-fw --manifest "$RUNNER_TEMP/unseen-corpus/corpus.json" > "$RUNNER_TEMP/unseen-result.json"
+      - name: Differential fuzzing against the independent oracle
+        run: |
+          count=5000
+          if [ "${{ github.event_name }}" = schedule ]; then count=100000; fi
+          python3 scripts/oracle-fuzz.py --binary target/release/nyra-fw --seeds "$RUNNER_TEMP/unseen-corpus" --output "$RUNNER_TEMP/oracle-fuzz" --count "$count" --workers 4
+      - name: Pinned publisher images
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          python3 scripts/fetch-reference-corpus.py tests/fixtures/reference/openwrt-unseen-25.12.6.json "$RUNNER_TEMP/unseen-real"
+          python3 scripts/check-corpus.py --binary target/release/nyra-fw --manifest "$RUNNER_TEMP/unseen-real/corpus.json" > "$RUNNER_TEMP/unseen-real-result.json"
+          python3 scripts/fetch-reference-corpus.py tests/fixtures/reference/raspberrypi-boot-pinned.json "$RUNNER_TEMP/raspberrypi-real"
+          python3 scripts/check-corpus.py --binary target/release/nyra-fw --manifest "$RUNNER_TEMP/raspberrypi-real/corpus.json" > "$RUNNER_TEMP/raspberrypi-real-result.json"
+          for filename in start4.elf bootcode.bin bcm2711-rpi-4-b.dtb; do
+            target/release/nyra-fw analyze "$RUNNER_TEMP/raspberrypi-real/$filename" --allow-partial -o "$RUNNER_TEMP/rpi-$filename-workspace"
+            target/release/nyra-fw verify "$RUNNER_TEMP/rpi-$filename-workspace" --replay --agent-ready
+          done
+
+  dependency-audit:
+    if: github.event_name != 'schedule'
+    name: Dependency audit (Linux)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8
+        with:
+          toolchain: 1.95.0
+      - name: Install cargo-audit
+        run: cargo install cargo-audit --version 0.22.2 --locked
+      - name: Audit workspace dependencies
+        run: cargo audit --file Cargo.lock
+      - name: Audit fuzz dependencies
+        run: cargo audit --file fuzz/Cargo.lock
+
+  fuzz:
+    name: Bounded parser fuzzing (Linux)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      RAYON_NUM_THREADS: 1
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8
+        with:
+          toolchain: nightly-2026-11-07
+          components: llvm-tools-preview
+      - name: Install cargo-fuzz
+        run: cargo install cargo-fuzz --version 0.13.2 --locked
+      - name: Run each parser target
+        shell: bash
+        env:
+          EXTENDED_FUZZ: ${{ github.event_name == 'schedule' || inputs.extended_fuzz }}
+        run: |
+          seconds=5
+          if [ "$EXTENDED_FUZZ" = true ]; then seconds=60; fi
+          cd fuzz
+          for target in \
+            fuzz_pihc_header \
+            fuzz_pihc_crypto \
+            fuzz_pihc_recover \
+            fuzz_zip_archive \
+            fuzz_tar \
+            fuzz_squashfs \
+            fuzz_elf \
+            fuzz_ghidra_exports \
+            fuzz_candidates
+          do
+            cargo +nightly-2026-11-07 fuzz run --release "$target" -- -max_total_time="$seconds" -max_len=1048576 -timeout=10 -rss_limit_mb=2048
+          done

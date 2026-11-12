@@ -1,0 +1,249 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra-fwlab.invalid/schemas/candidate-corpus-result.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"
+          },
+          "source_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "exhaustive": {
+            "type": "boolean"
+          },
+          "matched": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"
+                },
+                "offset": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "extent": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "kind",
+                "offset",
+                "extent"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "missing": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"
+                },
+                "offset": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "extent": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "kind",
+                "offset",
+                "extent"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "extent_mismatches": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"
+                },
+                "offset": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "extent": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 1
+                },
+                "actual_extent": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "kind",
+                "offset",
+                "extent",
+                "actual_extent"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "false_positives": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"
+                },
+                "offset": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "extent": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "kind",
+                "offset",
+                "extent"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "unclassified": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"
+                },
+                "offset": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "extent": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "kind",
+                "offset",
+                "extent"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "budget_exhausted": {
+            "type": "boolean"
+          },
+          "pass": {
+            "type": "boolean"
+          },
+          "status_mismatches": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"
+                },
+                "offset": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "expected_status": {
+                  "type": "string",
+                  "enum": [
+                    "structure_validated",
+                    "payload_verified"
+                  ]
+                },
+                "actual_status": {
+                  "type": "string",
+                  "enum": [
+                    "structure_validated",
+                    "payload_verified"
+                  ]
+                }
+              },
+              "required": [
+                "kind",
+                "offset",
+                "expected_status",
+                "actual_status"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "id",
+          "source_sha256",
+          "bytes",
+          "exhaustive",
+          "matched",
+          "missing",
+          "extent_mismatches",
+          "status_mismatches",
+          "false_positives",
+          "unclassified",
+          "budget_exhausted",
+          "pass"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "cases"
+  ],
+  "additionalProperties": false
+}

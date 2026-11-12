@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra-fwlab.invalid/schemas/component-graph.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {"const": 1},
+    "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_path": {"type": "string"},
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "integer", "minimum": 0},
+          "format": {"enum": ["pihc", "zip", "gzip", "squashfs", "squashfs_big_endian", "uimage", "elf", "fdt", "ubi", "xz", "bzip2", "zstd"]},
+          "address": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {"space": {"const": "original"}},
+                "required": ["space"],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {"space": {"const": "decoded_gzip"}, "container_candidate": {"type": "integer", "minimum": 0}},
+                "required": ["space", "container_candidate"],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "offset": {"type": "integer", "minimum": 0},
+          "extent": {"type": ["integer", "null"], "minimum": 1},
+          "evidence": {"enum": ["structure_validated", "payload_verified"]},
+          "nested_in": {"type": ["integer", "null"], "minimum": 0},
+          "conflicts_with": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+          "carvable": {"type": "boolean"}
+        },
+        "required": ["id", "format", "address", "offset", "extent", "evidence", "nested_in", "conflicts_with", "carvable"],
+        "additionalProperties": false
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {"type": "string"},
+          "kind": {"enum": ["firmware_image", "squash_fs_image", "archive_member", "other"]},
+          "evidence": {"enum": ["original_crc32", "recovered_crc32", "header_validated", "unverified"]},
+          "source_offset": {"type": "integer", "minimum": 0},
+          "source_length": {"type": "integer", "minimum": 0},
+          "candidate": {"type": ["integer", "null"], "minimum": 0}
+        },
+        "required": ["path", "kind", "evidence", "source_offset", "source_length", "candidate"],
+        "additionalProperties": false
+      }
+    },
+    "root_filesystem_candidates": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {"reference": {"const": "original"}},
+            "required": ["reference"],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {"reference": {"const": "artifact"}, "path": {"type": "string"}},
+            "required": ["reference", "path"],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {"reference": {"const": "candidate"}, "id": {"type": "integer", "minimum": 0}},
+            "required": ["reference", "id"],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": ["schema_version", "source_sha256", "source_path", "candidates", "artifacts", "root_filesystem_candidates"],
+  "additionalProperties": false
+}

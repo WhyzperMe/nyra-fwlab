@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nyra-fwlab.invalid/schemas/candidate-corpus.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"
+          },
+          "file": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "exhaustive": {
+            "type": "boolean"
+          },
+          "expected": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "extent": {
+                      "const": null
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "structure_validated",
+                        "payload_verified"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "offset",
+                    "extent"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9_-]{0,79}$"
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "extent": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "structure_validated",
+                        "payload_verified"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "offset",
+                    "extent",
+                    "sha256"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "id",
+          "file",
+          "sha256",
+          "exhaustive",
+          "expected"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 256
+    }
+  },
+  "required": [
+    "schema_version",
+    "cases"
+  ],
+  "additionalProperties": false
+}
