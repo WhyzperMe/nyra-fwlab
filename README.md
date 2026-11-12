@@ -9,9 +9,9 @@
 [![MIT](https://img.shields.io/badge/License-MIT-22c55e)](LICENSE)
 
 Offline firmware recovery and static reverse engineering in Rust.<br>
-Bounded parsers Â· Source provenance Â· Sandboxed Ghidra Â· Verified Claude workspaces
+Bounded parsers · Source provenance · Sandboxed Ghidra · Verified Claude workspaces
 
-[Quick start](#quick-start) Â· [Supported formats](#supported-formats) Â· [Workspace](#your-workspace) Â· [Documentation](docs/README.md)
+[Quick start](#quick-start) · [Supported formats](#supported-formats) · [Workspace](#your-workspace) · [Documentation](docs/README.md)
 
 </div>
 
@@ -117,17 +117,17 @@ extension can be reconstructed.
 | **Legacy U-Boot uImage** | Header/payload CRCs, bounded payload carving, load/entry addresses, and numeric type metadata. |
 | **Unknown / damaged images** | Conservative candidate discovery; optional partial preservation with explicit failed checks and unresolved overlaps. |
 
-[Exact format boundaries](docs/formats.md) Â· [Embedded candidate discovery](docs/candidates.md)
+[Exact format boundaries](docs/formats.md) · [Embedded candidate discovery](docs/candidates.md)
 
 ## Your workspace
 
 ```text
 workspace/
-â”œâ”€â”€ original/          Exact input bytes
-â”œâ”€â”€ recovered/         Recovered members and classified raw carves
-â”œâ”€â”€ analysis/          Static findings, component graph, and evidence index
-â”œâ”€â”€ manifests/         Source identities, hashes, and run metadata
-â””â”€â”€ reconstruction/    Editable notes and reconstruction work
+├── original/          Exact input bytes
+├── recovered/         Recovered members and classified raw carves
+├── analysis/          Static findings, component graph, and evidence index
+├── manifests/         Source identities, hashes, and run metadata
+└── reconstruction/    Editable notes and reconstruction work
 ```
 
 Each workspace also includes generated firmware/hardware maps and agent guidance.
@@ -137,7 +137,7 @@ and `analysis/workspace/agent-index.json`.
 
 Keep firmware strings, logs, scripts, and pseudocode in the evidence layer. Edit
 `reconstruction/`; changes to the immutable evidence tree are detected by verification.
-[Agent workflow](docs/agent-workflow.md) Â· [Workspace contracts](docs/workspace-schema.md)
+[Agent workflow](docs/agent-workflow.md) · [Workspace contracts](docs/workspace-schema.md)
 
 ## Optional Ghidra and filesystem analysis
 
@@ -161,7 +161,7 @@ controls firmware recovery. Validated Ghidra export caching is opt-in with
 Use `--require-cgroup` to require delegated process-tree resource limits.
 
 Ghidra pseudocode is inferred, and static references can miss indirect calls.
-[Sandbox and trust model](docs/security.md) Â· [Live Ghidra qualification](docs/corpus.md#security-gates)
+[Sandbox and trust model](docs/security.md) · [Live Ghidra qualification](docs/corpus.md#security-gates)
 
 ## Evidence and validation
 
@@ -184,10 +184,10 @@ links to current hosted results. [Full validation record and limitations](VALIDA
 - [Supported formats and candidate discovery](docs/formats.md)
 - [Workspace schema and agent workflow](docs/workspace-schema.md)
 - [Independent corpus and performance measurements](docs/corpus.md)
-- [Security reporting](SECURITY.md) Â· [Changelog](CHANGELOG.md)
+- [Security reporting](SECURITY.md) · [Changelog](CHANGELOG.md)
 
 ## License
 
-**MIT Â· [Whyzper.Me](https://github.com/WhyzperMe)** â€” see [LICENSE](LICENSE).
+**MIT · [Whyzper.Me](https://github.com/WhyzperMe)** — see [LICENSE](LICENSE).
 The repository license grants no rights to external firmware. Dependencies retain
 their own licenses; the PIHC format constants are disclosed in [SECURITY.md](SECURITY.md).
