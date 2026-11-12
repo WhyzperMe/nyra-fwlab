@@ -2,14 +2,14 @@
 
 ```text
 nyra-fw-cli
-  â”œâ”€â”€ nyra-fw-core
-  â”œâ”€â”€ nyra-fw-formats
-  â”‚     â””â”€â”€ nyra-fw-core
-  â””â”€â”€ nyra-fw-workspace
-        â”œâ”€â”€ nyra-fw-analysis
-        â”‚     â””â”€â”€ nyra-fw-core
-        â”œâ”€â”€ nyra-fw-formats
-        â””â”€â”€ nyra-fw-core
+  ├── nyra-fw-core
+  ├── nyra-fw-formats
+  │     └── nyra-fw-core
+  └── nyra-fw-workspace
+        ├── nyra-fw-analysis
+        │     └── nyra-fw-core
+        ├── nyra-fw-formats
+        └── nyra-fw-core
 ```
 
 The CLI controls invocation, resource limits and the Rayon pool. Core provides contracts and shared path rules. Formats validate byte ranges and recover data without filesystem access. Analysis inspects immutable byte slices and parsed records. Workspace orchestrates the stages, invokes isolated tools and publishes results.
@@ -53,7 +53,7 @@ Independent decoders, ELF reports, archive writes and private-stage hashing run 
 
 ## Contracts
 
-New reports must identify their schema and source, retain uncertainty, and participate in workspace verification. Schema tests check generated reports against their contracts. [Workspace schema](workspace-schema.md) Â· [Security model](security.md)
+New reports must identify their schema and source, retain uncertainty, and participate in workspace verification. Schema tests check generated reports against their contracts. [Workspace schema](workspace-schema.md) · [Security model](security.md)
 
 ## Pipeline contracts
 
