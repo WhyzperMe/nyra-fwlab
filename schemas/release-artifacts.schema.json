@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NYRA FWLab release artifact index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "version", "source_commit", "artifacts"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z.-]+)?$"},
+    "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "artifacts": {
+      "type": "array", "minItems": 2, "maxItems": 2,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["schema_version", "version", "target", "source_commit", "source_date_epoch", "archive", "size", "sha256", "binary_sha256"],
+        "properties": {
+          "schema_version": {"const": 1},
+          "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z.-]+)?$"},
+          "target": {"enum": ["x86_64-pc-windows-msvc", "x86_64-unknown-linux-gnu"]},
+          "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+          "source_date_epoch": {"type": "integer", "minimum": 315532800},
+          "archive": {"type": "string", "pattern": "^nyra-fwlab-[0-9A-Za-z.-]+-(x86_64-pc-windows-msvc\\.zip|x86_64-unknown-linux-gnu\\.tar\\.gz)$"},
+          "size": {"type": "integer", "minimum": 1, "maximum": 33554432},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "binary_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    }
+  }
+}

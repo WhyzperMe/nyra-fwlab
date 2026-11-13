@@ -10,7 +10,7 @@ members = [
 
 [workspace.package]
 edition = "2024"
-version = "0.10.1"
+version = "0.11.0"
 rust-version = "1.95"
 license = "MIT"
 authors = ["Whyzper.Me"]

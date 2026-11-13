@@ -1,6 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.11.0 - 2026-11-13
+
+First public binary release for Windows x86-64 (MSVC) and Linux x86-64 (GNU).
+
 
 - Fix the benchmark fail-fast regression test on Windows by identifying temporary executables with `samefile` after path resolution. Exercise a path alias on every platform so this failure is covered locally.
 

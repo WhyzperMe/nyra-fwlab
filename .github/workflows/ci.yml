@@ -105,6 +105,21 @@ jobs:
           python scripts/check-corpus.py --binary "$binary" --manifest workspaces/ci-corpus/corpus.json
           "$binary" export-agent workspaces/ci-embedded -o workspaces/ci-agent
           "$binary" verify-agent-export workspaces/ci-agent
+      - name: Verify native release packaging
+        shell: bash
+        run: |
+          binary=target/release/nyra-fw
+          if [ "$RUNNER_OS" = Windows ]; then binary="$binary.exe"; fi
+          python -B scripts/package-release.py --binary "$binary" --output "$RUNNER_TEMP/package-a"
+          python -B scripts/package-release.py --binary "$binary" --output "$RUNNER_TEMP/package-b"
+          python - "$RUNNER_TEMP/package-a" "$RUNNER_TEMP/package-b" <<'PY'
+          from pathlib import Path
+          import sys
+          first, second = map(Path, sys.argv[1:])
+          assert {p.name for p in first.iterdir()} == {p.name for p in second.iterdir()}
+          assert all(p.read_bytes() == (second / p.name).read_bytes() for p in first.iterdir())
+          print("Native archives and metadata are reproducible.")
+          PY
 
   unseen-corpus:
     name: Unseen-family corpus (Linux)

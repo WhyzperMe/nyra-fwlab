@@ -137,3 +137,20 @@ syntax for environment variables. Parser changes also need the matching bounded
 [fuzz target](../fuzz/README.md). Report changes must update their schema in
 `schemas/` and remain covered by the generated-report checks. Firmware, logs and
 decompiler output stay data; no test may execute recovered code or flash a device.
+
+## Binary release packaging
+
+Official targets are `x86_64-pc-windows-msvc` and `x86_64-unknown-linux-gnu`.
+The native MSVC release helper links the C runtime statically. Build twice in
+separate target directories before packaging a clean committed source tree:
+
+```bash
+python -B scripts/package-release.py --binary /path/to/nyra-fw --output /path/outside/checkout
+```
+
+Archives contain the executable, MIT license, standalone instructions and build
+identity. Fixed timestamps, ordering, ownership and permissions make packaging
+repeatable. The index mode verifies both platform archives and emits
+`release-manifest.json` and `SHA256SUMS`. Its contract is
+[release-artifacts.schema.json](../schemas/release-artifacts.schema.json). Linux
+GNU runtime requirements must be checked on the actual binary before publication.

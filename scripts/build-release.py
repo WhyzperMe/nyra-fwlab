@@ -55,6 +55,10 @@ def main():
     else:
         flags = environment.get("RUSTFLAGS", "").split()
     flags.extend(f"--remap-path-prefix={source}={replacement}" for source, replacement in mappings)
+    # Ship a standalone MSVC executable without a separate VC runtime install.
+    configured_target = environment.get("CARGO_BUILD_TARGET", "")
+    if os.name == "nt" and (not configured_target or configured_target.endswith("-msvc")):
+        flags.extend(["-C", "target-feature=+crt-static"])
     environment["CARGO_ENCODED_RUSTFLAGS"] = "\x1f".join(flags)
     subprocess.run(
         ["cargo", "build", "--workspace", "--all-targets", "--release", "--locked", "--target-dir", str(target)],

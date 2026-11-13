@@ -251,7 +251,7 @@ dependencies = [
 
 [[package]]
 name = "nyra-fw-analysis"
-version = "0.10.1"
+version = "0.11.0"
 dependencies = [
  "goblin",
  "nyra-fw-core",
@@ -261,7 +261,7 @@ dependencies = [
 
 [[package]]
 name = "nyra-fw-core"
-version = "0.10.1"
+version = "0.11.0"
 dependencies = [
  "hex",
  "serde",
@@ -272,7 +272,7 @@ dependencies = [
 
 [[package]]
 name = "nyra-fw-formats"
-version = "0.10.1"
+version = "0.11.0"
 dependencies = [
  "aes",
  "crc32fast",
